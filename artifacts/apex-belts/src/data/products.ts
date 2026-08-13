@@ -1,3 +1,18 @@
+import rollBeltsPrimary from '@assets/o_1jmqe93931lrp7i5gml18mh6k7d_1786596639408.webp';
+import rollBeltsAlternate from '@assets/o_1jmqe939314v69nsshii6s1i4hc_1786596639408.webp';
+import ratchetMechanism from '@assets/o_1jmqfqr9f1e7g1rcd5a66v056mc_1786596639406.webp';
+import triangularHook from '@assets/o_1jmdr1gog69v1icd1jjboa29gub_1786596639407.webp';
+import secondaryHook from '@assets/o_1jmdpuh8k166f1gbk1d019ne1em0b_1786596639407.webp';
+import completeLashingBelt from '@assets/o_1jmqgmtclt5q1srjogf1sl6s80c_1786596639407.webp';
+import ratchetRolledBelt from '@assets/o_1jmqgmtcl7otjlrr6q17ka695b_1786596639408.webp';
+
+export type ProductImage = {
+  src: string;
+  alt: string;
+  label: string;
+  position?: string;
+};
+
 export type Product = {
   slug: string;
   name: string;
@@ -9,6 +24,8 @@ export type Product = {
   features: string[];
   applications: string[];
   specs: { label: string; value: string }[];
+  primaryImage: ProductImage;
+  gallery: ProductImage[];
 };
 
 export const products: Product[] = [
@@ -23,6 +40,11 @@ export const products: Product[] = [
     features: ['High-strength webbing', 'Controlled roll handling', 'Configurable lengths'],
     applications: ['Warehousing', 'Manufacturing', 'Cargo handling'],
     specs: [{ label: 'Material', value: 'Editable placeholder' }, { label: 'Width', value: 'To be confirmed' }, { label: 'Finish', value: 'To be confirmed' }],
+    primaryImage: { src: rollBeltsPrimary, alt: 'Stacked orange roll belts photographed from an alternate angle', label: 'Roll belts / stacked view' },
+    gallery: [
+      { src: rollBeltsPrimary, alt: 'Stacked orange roll belts photographed from an alternate angle', label: 'Stacked view' },
+      { src: rollBeltsAlternate, alt: 'Stacked orange roll belts with visible woven edges', label: 'Detail view' },
+    ],
   },
   {
     slug: 'ratchet-lashing-belts',
@@ -35,6 +57,12 @@ export const products: Product[] = [
     features: ['Reliable tensioning', 'Secure fastening', 'Durable hardware'],
     applications: ['Logistics', 'Transportation', 'Commercial vehicles'],
     specs: [{ label: 'Assembly', value: 'Editable placeholder' }, { label: 'Length', value: 'To be confirmed' }, { label: 'Capacity', value: 'Do not publish until verified' }],
+    primaryImage: { src: completeLashingBelt, alt: 'Complete orange lashing belt and ratchet assembly with hook', label: 'Complete assembly' },
+    gallery: [
+      { src: completeLashingBelt, alt: 'Complete orange lashing belt and ratchet assembly with hook', label: 'Complete assembly' },
+      { src: ratchetRolledBelt, alt: 'Ratchet with orange rolled belt and hook on a grey surface', label: 'Rolled belt' },
+      { src: ratchetMechanism, alt: 'Close-up of the metal ratchet lock mechanism', label: 'Mechanism detail' },
+    ],
   },
   {
     slug: 'ratchet-locks',
@@ -47,6 +75,11 @@ export const products: Product[] = [
     features: ['Positive engagement', 'Tactile operation', 'Assembly-ready platform'],
     applications: ['Industrial equipment', 'Fleet operations', 'Load restraint'],
     specs: [{ label: 'Material', value: 'Editable placeholder' }, { label: 'Coating', value: 'To be confirmed' }, { label: 'Interface', value: 'To be confirmed' }],
+    primaryImage: { src: ratchetMechanism, alt: 'Close-up front view of a metal ratchet lock mechanism', label: 'Lock mechanism' },
+    gallery: [
+      { src: ratchetMechanism, alt: 'Close-up front view of a metal ratchet lock mechanism', label: 'Lock mechanism' },
+      { src: ratchetRolledBelt, alt: 'Ratchet with orange rolled belt and hook on a grey surface', label: 'Assembly context' },
+    ],
   },
   {
     slug: 'hooks',
@@ -59,6 +92,12 @@ export const products: Product[] = [
     features: ['Application-led geometry', 'Robust connection point', 'Multiple options'],
     applications: ['Cargo handling', 'Transport', 'Heavy-duty securing'],
     specs: [{ label: 'Profile', value: 'Editable placeholder' }, { label: 'Finish', value: 'To be confirmed' }, { label: 'Options', value: 'Available on inquiry' }],
+    primaryImage: { src: triangularHook, alt: 'Triangular metal connection hook photographed on a grey surface', label: 'Connection hook' },
+    gallery: [
+      { src: triangularHook, alt: 'Triangular metal connection hook photographed on a grey surface', label: 'Triangular hook' },
+      { src: secondaryHook, alt: 'Secondary metal hook detail photographed at an angle', label: 'Hook detail' },
+      { src: completeLashingBelt, alt: 'Orange lashing belt assembly showing connected hook hardware', label: 'In-system view' },
+    ],
   },
 ];
 
