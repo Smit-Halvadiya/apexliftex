@@ -1,0 +1,745 @@
+Build a completely new, premium, modern, high-converting B2B industrial website for Apex Belts, an industrial belt and load-securing products business associated with Apex Engineering.
+
+Reference product category:
+
+Roll Belts
+Ratchet Lashing Belts
+Ratchet Locks
+Hooks
+Industrial load-securing and cargo restraint products
+
+The website must NOT look like a typical old-fashioned manufacturing website. Avoid the common industrial website style of dark blue, grey, generic gradients, stock factory photos, excessive borders, boring cards, and outdated typography.
+
+The goal is to create a website that looks like a premium international industrial technology brand — sophisticated, engineered, trustworthy, precise, modern, and visually memorable.
+
+1. CORE DESIGN DIRECTION
+
+Create a distinctive visual identity around:
+
+Precision × Strength × Movement × Engineering
+
+The website should visually communicate:
+
+Heavy-duty reliability
+Engineering precision
+Safety
+Load security
+Industrial performance
+Modern manufacturing
+International B2B capability
+Technical expertise
+Product quality
+
+Think of the visual language as a combination of:
+
+premium industrial technology + modern logistics + precision engineering
+
+Do NOT copy any existing website.
+
+The design must feel completely original.
+
+2. COLOR SYSTEM
+
+Do NOT use the typical industrial palette:
+
+Navy blue
+Corporate blue
+Basic grey
+Black + yellow construction colors
+Generic blue gradients
+
+Instead create a fresh, contemporary industrial palette.
+
+Primary background:
+
+Obsidian Ink — #111315
+
+Secondary dark:
+
+Graphite Slate — #1B2024
+
+Primary light:
+
+Mineral Mist — #E9ECE8
+
+Secondary light:
+
+Frost White — #F7F8F5
+
+Modern accent:
+
+Electric Lime — #C8F04A
+
+Secondary accent:
+
+Digital Teal — #39D6C5
+
+Muted technical accent:
+
+Steel Sage — #87958F
+
+Use the accents carefully.
+
+The website should NOT become neon or overly colorful.
+
+Use the dark palette for premium sections and product showcases, while light sections create visual breathing room.
+
+The Electric Lime should be used strategically for:
+
+CTA highlights
+Hover states
+Product specification highlights
+Small graphical indicators
+Important numbers
+Interactive elements
+
+Digital Teal should be used sparingly for:
+
+Technical details
+Secondary interactive elements
+Micro-interactions
+Data/engineering visualizations
+
+The overall result should feel premium and engineered rather than flashy.
+
+3. TYPOGRAPHY
+
+Do NOT use generic typography such as:
+
+Poppins
+Roboto
+Open Sans
+Arial
+Montserrat
+
+Use a more contemporary typography system.
+
+Recommended:
+
+Primary Display Font
+
+Space Grotesk
+
+Use for:
+
+Hero headline
+Section headings
+Large statistics
+Product titles
+Secondary / Body Font
+
+Manrope
+
+Use for:
+
+Paragraphs
+Navigation
+Product descriptions
+Buttons
+Forms
+Technical information
+
+For technical labels and specifications, use:
+
+IBM Plex Mono
+
+Use very sparingly for:
+
+Product codes
+Measurements
+Technical specifications
+Small engineering labels
+
+Typography should feel:
+
+technical + premium + editorial + modern
+
+Use strong typographic hierarchy.
+
+Large headlines should have confident spacing and short line lengths.
+
+4. OVERALL VISUAL LANGUAGE
+
+Use a highly refined layout with:
+
+Large typography
+Asymmetrical grids
+Generous whitespace
+Full-width product photography
+Editorial-style product sections
+Technical specification blocks
+Layered compositions
+Subtle grid patterns
+Precision lines
+Micro labels
+Numbered sections
+Floating UI elements
+Large product imagery
+Dark/light section transitions
+
+Avoid:
+
+Excessive rounded cards
+Excessive glassmorphism
+Huge gradients
+Template-looking sections
+Repetitive 3-column cards
+Generic icon grids
+Excessive shadows
+
+Cards should be used only when they genuinely improve information hierarchy.
+
+5. HERO SECTION
+
+Create a visually striking hero section.
+
+Headline concept:
+
+SECURE THE LOAD.
+ENGINEER THE JOURNEY.
+
+Supporting text:
+
+Precision-engineered belts and load-securing solutions designed for demanding industrial, logistics and transportation applications.
+
+Hero should feature a high-quality close-up product visual of an industrial ratchet lashing belt / cargo belt.
+
+The product should feel extremely tactile and realistic.
+
+Create an artistic composition where the belt visually travels across the hero section.
+
+Add subtle engineering measurement marks / technical annotations around the product.
+
+Example micro labels:
+
+LOAD SECUREMENT
+HEAVY DUTY
+ENGINEERED PERFORMANCE
+
+Primary CTA:
+
+Explore Products
+
+Secondary CTA:
+
+Talk to Our Team
+
+Add a subtle scroll indicator.
+
+Hero animation:
+
+As the user enters the page:
+
+Product slowly moves into position
+Technical measurement lines animate
+Small specification labels appear sequentially
+Typography reveals smoothly
+CTA buttons fade/slide in
+Background technical grid subtly moves
+
+Keep animation sophisticated and fast.
+
+No excessive flashy animation.
+
+6. NAVIGATION
+
+Create a premium sticky navigation.
+
+Logo:
+
+APEX BELTS
+
+Small descriptor:
+
+ENGINEERED LOAD SECUREMENT
+
+Navigation:
+
+Home
+Products
+Applications
+About
+Quality
+Resources
+Contact
+
+CTA:
+
+Request a Quote
+
+Navigation should transform subtly while scrolling.
+
+On mobile, use a clean animated menu.
+
+7. HOME PAGE STRUCTURE
+
+Create the following sections:
+
+Hero
+
+Premium product-focused hero.
+
+Product Categories
+
+Show the primary product families:
+
+Roll Belts
+Ratchet Lashing Belts
+Ratchet Locks
+Hooks
+
+Each product category should have:
+
+Large product image
+Short technical description
+Product code/category label
+Explore button
+
+Use an asymmetric editorial layout instead of standard cards.
+
+8. ENGINEERING / PERFORMANCE SECTION
+
+Create a visually impressive technical section.
+
+Headline:
+
+BUILT FOR THE LOAD.
+
+Show important performance characteristics such as:
+
+High-strength webbing
+Secure fastening
+Reliable tensioning
+Durable hardware
+Industrial-grade construction
+Consistent performance
+
+Use animated technical diagrams.
+
+Create subtle line animations connecting different components.
+
+Do not invent certifications, testing values or technical specifications.
+
+If actual specifications are unavailable, use clearly marked placeholder content that can later be replaced.
+
+9. PRODUCT DETAIL EXPERIENCE
+
+Every product must have its own dedicated page.
+
+Create separate routes:
+
+/products
+/products/roll-belts
+/products/ratchet-lashing-belts
+/products/ratchet-locks
+/products/hooks
+
+Each product page should include:
+
+Large product hero
+Product overview
+Applications
+Key features
+Technical specifications
+Available configurations
+Material information
+Size/options
+Product gallery
+Downloadable technical information area
+Inquiry CTA
+
+Do NOT create fake specifications.
+
+Use editable placeholder fields where information has not yet been provided.
+
+10. APPLICATIONS PAGE
+
+Create a dedicated Applications page.
+
+Show how the products can be used across industries such as:
+
+Logistics
+Transportation
+Cargo Handling
+Industrial Equipment
+Warehousing
+Commercial Vehicles
+Manufacturing
+Heavy-Duty Load Securing
+
+Use large visual sections instead of boring industry cards.
+
+Each application should explain:
+
+Challenge → Solution → Product
+
+This should make the website feel consultative rather than simply product-selling.
+
+11. ABOUT PAGE
+
+Create a premium About page for Apex Belts / Apex Engineering.
+
+Include:
+
+Company story
+Engineering approach
+Product philosophy
+Manufacturing / sourcing capabilities
+Quality commitment
+Customer-first approach
+B2B focus
+
+Use a strong editorial layout.
+
+Avoid generic “Our Mission / Our Vision” boxes.
+
+Instead tell the company story visually.
+
+12. QUALITY PAGE
+
+Create a dedicated Quality page.
+
+Sections:
+
+Quality philosophy
+Material selection
+Production quality
+Inspection process
+Product consistency
+Safety-focused approach
+Quality assurance
+
+Use technical visual elements.
+
+Do NOT claim certifications unless the client provides verified certification information.
+
+13. RESOURCES PAGE
+
+Create:
+
+Product Catalog
+Technical Documents
+Product Guides
+FAQs
+Industry Resources
+
+Use downloadable document placeholders.
+
+Create a clean resource interface.
+
+14. CONTACT PAGE
+
+Create a premium B2B contact page.
+
+Include:
+
+Name
+Company
+Email
+Phone
+Product Interest
+Quantity / Requirement
+Message
+Upload Requirement / File
+Submit Inquiry
+
+Add:
+
+Request a Quote
+
+as the primary conversion goal.
+
+Include company contact information using placeholders if actual details are unavailable.
+
+Do NOT invent contact information.
+
+15. QUOTE / INQUIRY FLOW
+
+Create a dedicated quote-request experience.
+
+The CTA should appear throughout the website.
+
+Example:
+
+Need the right securing solution?
+Tell us what you're moving. We'll help you secure it.
+
+Form fields:
+
+Company Name
+Contact Name
+Email
+Phone
+Product
+Application
+Quantity
+Requirement
+Attachment
+
+Make the form professional and simple.
+
+16. INTERACTIONS & ANIMATIONS
+
+Animations are very important.
+
+Use:
+
+Smooth page transitions
+Scroll reveal animations
+Image parallax
+Product hover interactions
+Animated technical lines
+Number counters
+Magnetic CTA buttons
+Navigation transformation
+Subtle cursor interaction
+Product image zoom
+Text reveal
+Section transition animations
+
+Use GSAP / Framer Motion or another appropriate animation library.
+
+Animations must remain performant.
+
+Respect:
+
+prefers-reduced-motion
+
+Do not make the website feel like an animation demo.
+
+Every animation should have a purpose.
+
+17. PRODUCT INTERACTION
+
+On product cards:
+
+Hover should create a sophisticated interaction.
+
+Example:
+
+Product image slightly moves.
+
+Technical information appears.
+
+A small label changes from:
+
+VIEW PRODUCT → EXPLORE
+
+Use subtle micro-interactions.
+
+No exaggerated scaling.
+
+18. RESPONSIVE DESIGN
+
+The website must be completely responsive.
+
+Optimize for:
+
+Large desktop
+Laptop
+Tablet
+Mobile
+
+Do not simply shrink the desktop design.
+
+Create intentional mobile layouts.
+
+Mobile navigation should be premium and easy to use.
+
+Hero typography should remain powerful on mobile.
+
+19. IMAGE DIRECTION
+
+Use highly realistic industrial product imagery.
+
+Image style:
+
+Macro product photography
+Dramatic lighting
+Clean backgrounds
+Industrial environments
+Close-up textures
+Detailed hardware
+Webbing texture
+Metal components
+Realistic materials
+
+Avoid generic corporate stock photos.
+
+Avoid fake smiling employees.
+
+Avoid generic factory images unless they genuinely support the story.
+
+Products should remain the visual hero.
+
+If actual client product images are unavailable, use professional placeholders that can easily be replaced later.
+
+20. SEO STRUCTURE
+
+Build the website with SEO in mind.
+
+Use:
+
+Semantic HTML
+Proper H1/H2/H3 hierarchy
+SEO-friendly URLs
+Metadata
+Open Graph tags
+Product structured data where appropriate
+Organization schema
+Breadcrumbs
+Optimized image alt text
+Fast loading
+Lazy loading
+Clean internal linking
+
+Target commercial keywords naturally around:
+
+Industrial belts
+Ratchet lashing belts
+Load securing belts
+Cargo lashing belts
+Roll belts
+Ratchet locks
+Industrial hooks
+Load securing solutions
+
+Do not keyword stuff.
+
+21. PERFORMANCE
+
+The website must be production-ready.
+
+Prioritize:
+
+Fast initial load
+Optimized images
+Lazy loading
+Code splitting
+Minimal JavaScript where possible
+Responsive images
+Good Core Web Vitals
+Smooth 60fps animations
+
+Do not sacrifice performance for visual effects.
+
+22. DESIGN DETAILS THAT MAKE IT FEEL HUMAN-MADE
+
+This is extremely important.
+
+The website must NOT look AI-generated.
+
+Avoid predictable AI website patterns such as:
+
+Hero + three cards + testimonials + CTA
+Excessive rounded rectangles
+Generic gradients
+Random abstract blobs
+Generic AI-generated icons
+Repetitive layouts
+Excessive glassmorphism
+Stock photos with overlay text
+Huge meaningless statistics
+Fake testimonials
+
+Instead use:
+
+Intentional asymmetry
+Strong editorial composition
+Real product focus
+Technical annotations
+Precise spacing
+Unexpected but logical layouts
+Strong typography
+Subtle imperfections in image composition
+Product-specific storytelling
+
+The website should look like a professional branding agency designed it for a serious international industrial company.
+
+23. BRAND PERSONALITY
+
+The final brand personality should feel:
+
+Precise
+Confident
+Engineered
+Reliable
+Modern
+Industrial
+International
+Technical
+Premium
+
+Not:
+
+Cheap
+Generic
+Corporate
+Old-fashioned
+Overly mechanical
+AI-generated
+
+24. TECH STACK
+
+Use a modern production-ready stack.
+
+Preferred:
+
+React
+TypeScript
+Tailwind CSS
+Framer Motion / GSAP
+React Router
+
+Use reusable components.
+
+Create a clean component architecture.
+
+Make product data easy to update.
+
+Do not hard-code repetitive product sections unnecessarily.
+
+25. IMPORTANT BRANDING RULE
+
+The website should clearly establish:
+
+APEX BELTS
+
+as the product/business brand while maintaining the credibility of:
+
+APEX ENGINEERING
+
+where appropriate.
+
+Do not make the website confusing by repeatedly using both names in every section.
+
+Create a clear brand hierarchy.
+
+Example:
+
+APEX BELTS
+A division / product brand of Apex Engineering
+
+Use the exact final company relationship once confirmed by the client.
+
+26. FINAL EXPERIENCE
+
+When someone visits the website, the first impression should be:
+
+“This company understands industrial load security and engineering.”
+
+Not:
+
+“This is another generic manufacturing website.”
+
+The final website should feel comparable in visual quality to a modern international industrial technology brand.
+
+Make it:
+
+Bold. Minimal. Technical. Premium. Interactive. Product-focused.
+
+Do not copy the design of Elastotextile or any other reference website.
+
+Use the reference only to understand the product category and business context.
+
+Build a completely original visual identity and website experience for Apex Belts.
