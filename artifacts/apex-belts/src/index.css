@@ -31,16 +31,16 @@
   --foreground: 210 13% 9%;
   --border: 160 7% 78%;
   --input: 160 7% 78%;
-  --ring: 73 84% 61%;
+  --ring: 26 90% 54%;
   --card: 78 20% 96%;
   --card-foreground: 210 13% 9%;
-  --primary: 73 84% 61%;
+  --primary: 26 90% 54%;
   --primary-foreground: 210 13% 9%;
   --secondary: 186 65% 53%;
   --secondary-foreground: 210 13% 9%;
   --muted: 160 8% 80%;
   --muted-foreground: 190 7% 37%;
-  --accent: 73 84% 61%;
+  --accent: 26 90% 54%;
   --accent-foreground: 210 13% 9%;
   --app-font-sans: 'Manrope', sans-serif;
   --app-font-mono: 'IBM Plex Mono', monospace;
@@ -62,10 +62,21 @@
   * { @apply border-border; }
   html { scroll-behavior: smooth; }
   body { @apply font-sans antialiased bg-background text-foreground; margin: 0; }
-  ::selection { background: #c8f04a; color: #111315; }
+  ::selection { background: #f47b20; color: #111315; }
 }
 
-:root { --ink: #111315; --slate: #1b2024; --mist: #e9ece8; --frost: #f7f8f5; --lime: #c8f04a; --teal: #39d6c5; --sage: #87958f; }
+:root {
+  --ink: #111315;
+  --slate: #1b2024;
+  --mist: #e9ece8;
+  --frost: #f7f8f5;
+  --orange: #f47b20;
+  --orange-bright: #ff9c32;
+  --orange-deep: #c7611f;
+  --lime: var(--orange);
+  --teal: #39d6c5;
+  --sage: #87958f;
+}
 
 .display { font-family: 'Space Grotesk', sans-serif; }
 .mono { font-family: 'IBM Plex Mono', monospace; }
