@@ -76,6 +76,10 @@
   --lime: var(--orange);
   --teal: #39d6c5;
   --sage: #87958f;
+  --model-charcoal: #293238;
+  --model-steel: #aeb9b9;
+  --model-steel-dark: #526168;
+  --model-shadow: rgba(17, 19, 21, .34);
 }
 
 .display { font-family: 'Space Grotesk', sans-serif; }
@@ -91,5 +95,13 @@
 .product-photo-frame:after { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(135deg, rgba(17,19,21,.12), transparent 42%, rgba(17,19,21,.3)); }
 .gallery-thumb { transition: border-color .25s ease, opacity .25s ease, transform .25s ease; }
 .gallery-thumb:hover { transform: translateY(-2px); }
+.belt-study { isolation: isolate; }
+.belt-study-canvas { touch-action: none; cursor: grab; }
+.belt-study-canvas:active { cursor: grabbing; }
+.belt-study:before { content: ""; position: absolute; inset: 8% 7%; border: 1px solid rgba(135,149,143,.22); pointer-events: none; }
+.belt-study:after { content: ""; position: absolute; left: 7%; right: 7%; bottom: 9%; height: 18%; border-radius: 50%; background: radial-gradient(ellipse, rgba(17,19,21,.28), transparent 68%); filter: blur(10px); pointer-events: none; z-index: -1; }
+.belt-study-mark { position: absolute; pointer-events: none; }
+.belt-study-mark:before { content: ""; display: inline-block; width: 22px; height: 1px; margin-right: 8px; vertical-align: middle; background: var(--orange); }
+.belt-study-grid { background-image: linear-gradient(rgba(135,149,143,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(135,149,143,.1) 1px, transparent 1px); background-size: 32px 32px; }
 @keyframes reveal { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
 @media (prefers-reduced-motion: reduce) { *, *:before, *:after { animation-duration:.01ms !important; transition-duration:.01ms !important; scroll-behavior:auto !important; } }
