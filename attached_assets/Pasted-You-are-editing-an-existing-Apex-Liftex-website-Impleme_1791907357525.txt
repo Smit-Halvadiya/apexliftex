@@ -1,0 +1,155 @@
+You are editing an existing Apex Liftex website. Implement ONLY the “Our Product Approach” section. Do not modify any other homepage sections, existing components, navigation, footer, routes, typography system, or global color palette.
+
+The goal is to create a visually distinctive, premium, image-rich industrial section that feels custom-designed by a high-end digital branding agency.
+
+1. SECTION CONTENT
+
+Eyebrow:
+OUR PRODUCT APPROACH
+
+Headline:
+From Product Selection to Business Delivery
+
+Create exactly four stages with this copy:
+
+01 — Understanding Requirements
+
+Title: Understanding Your Needs
+
+Description: Application-focused product selection.
+
+02 — Product Selection
+
+Title: Selecting the Right Products
+
+Description: Belts and components suited to your requirements.
+
+03 — Product Suitability
+
+Title: Focus on Product Compatibility
+
+Description: Helping buyers identify suitable load-securing products and components.
+
+04 — Order Coordination
+
+Title: Support from Enquiry to Delivery
+
+Description: Responsive communication throughout the order process.
+
+Keep all supplied copy unchanged.
+
+2. UNIQUE VISUAL DESIGN
+
+Do NOT use a conventional four-card grid, a standard horizontal timeline, or a basic numbered process layout.
+
+Create an original editorial composition called the Industrial Product Journey.
+
+Design concept:
+
+Use a large, expressive section headline with premium typography.
+
+Create four visually connected but individually designed process stages.
+
+Use an asymmetrical image-led layout with alternating image positions and different visual proportions.
+
+Make photography the dominant element of each stage.
+
+Incorporate oversized step numbers, precise alignment, subtle technical annotations, and refined separators.
+
+Use deliberate negative space and an editorial rhythm instead of repetitive cards.
+
+Ensure the section feels cohesive with the existing website while having its own recognizable visual identity.
+
+The design should communicate precision, product knowledge, dependable sourcing, and professional B2B support.
+
+Avoid excessive rounded corners, generic gradients, glassmorphism, stock-template layouts, and unnecessary decorative icons.
+
+3. ADD FOUR DISTINCT PRODUCT/PROCESS IMAGES
+
+IMPORTANT: Every stage MUST have its own relevant image. Do not leave any stage without an image, and do not reuse the same image four times.
+
+Stage 01 — Understanding Requirements
+
+Use a realistic close-up or editorial photograph of industrial ratchet lashing belts and load-securing equipment being evaluated for a cargo application.
+
+Stage 02 — Product Selection
+
+Use a clear product photograph featuring neatly arranged industrial webbing roll belts in a professional product-display setting.
+
+Stage 03 — Product Suitability
+
+Use a detailed, realistic close-up of ratchet locks, metal hooks, webbing, and fastening hardware. Keep the product components visually clear.
+
+Stage 04 — Order Coordination
+
+Use a professional photograph of packaged industrial belts and load-securing components prepared for dispatch, with clean, organized packaging.
+
+Image quality requirements
+
+Prefer authentic Apex Liftex product photographs already available in the project.
+
+If suitable images are unavailable, source or generate appropriate temporary visuals that can be replaced easily later.
+
+All four images must depict the correct product or activity.
+
+Use consistent lighting, image quality, and art direction.
+
+Maintain realistic webbing textures, metal surfaces, and product proportions.
+
+Avoid unrelated factory machinery, fake logos, misleading product configurations, or generic corporate team photographs.
+
+Use carefully selected crops and aspect ratios to support the editorial layout.
+
+Add descriptive alt text to every image.
+
+Optimize image sizes and use lazy loading where appropriate.
+
+Do not fabricate manufacturing or testing scenes, as Apex Liftex does not manufacture these products.
+
+4. PREMIUM INTERACTIONS AND ANIMATIONS
+
+Use the animation library already installed in the project.
+
+Implement:
+
+Smooth, staggered entrance animations for the four stages.
+
+Subtle image reveal transitions.
+
+Elegant number animations or masked reveals.
+
+Restrained image zoom on hover.
+
+Subtle connecting-line animation if it complements the composition.
+
+Smooth transitions that respond naturally to scrolling.
+
+Animations should feel sophisticated, intentional, and fluid, not distracting.
+
+Respect prefers-reduced-motion and maintain strong performance on mobile devices.
+
+5. RESPONSIVE EXPERIENCE
+
+On desktop, use a visually rich asymmetrical editorial layout.
+
+On tablets, simplify the composition without losing its visual character.
+
+On mobile, stack the four image-led stages vertically with readable typography, appropriate image ratios, and balanced spacing.
+
+Prevent horizontal overflow and avoid unnecessarily tall sections.
+
+6. STRICT IMPLEMENTATION RULES
+
+Before coding, inspect the existing project and locate the current Our Product Approach section.
+
+Update it in place rather than adding a duplicate.
+
+Reuse the existing brand colors, fonts, design tokens, and animation libraries.
+
+Do not modify any unrelated files or components unless absolutely necessary to implement this section.
+
+Do not invent certifications, manufacturing capabilities, internal testing procedures, or delivery guarantees.
+
+After implementation, verify that all four images load correctly, all text is present, animations work, and desktop/mobile layouts render properly.
+
+Final objective: Create a distinctive, image-rich, premium industrial product journey section that does not resemble a generic website template or copy the reference website. Preserve the rest of the existing Apex Liftex website exactly as it is.

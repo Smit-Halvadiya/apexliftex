@@ -1,0 +1,58 @@
+## ADD SECTION 3 — WHY CHOOSE APEX LIFTEX
+
+Add one new premium section titled **Why Choose Apex Liftex** to the existing Apex Liftex homepage.
+
+Place it immediately after the About Apex Liftex section and before the next existing homepage section.
+
+Do not modify, rewrite, reorder, or remove any existing sections, navigation, footer, pages, routes, or functionality.
+
+### Exact Copy
+
+Eyebrow: WHY CHOOSE APEX LIFTEX
+
+Headline: The Right Products. Reliable Business Support.
+
+Create four feature items using the following exact content:
+
+**01 — Product Reliability**
+
+Title: Products Selected for Industrial Demands
+
+Description: Explore load-securing products suited to industrial, transportation, and cargo-handling requirements, with options for different applications.
+
+**02 — Quality-Focused Selection**
+
+Title: Quality That Starts with the Right Choice
+
+Description: We focus on product suitability, consistent selection, and helping businesses identify the right belts and components for their operational needs.
+
+**03 — Responsive Business Support**
+
+Title: Support That Keeps Business Moving
+
+Description: From product enquiries to order requirements, our team works to provide responsive assistance to distributors, dealers, and industrial buyers.
+
+**04 — Solutions for Diverse Applications**
+
+Title: One Range. Multiple Applications.
+
+Description: From ratchet lashing belts and roll belts to ratchet locks and hooks, our product range supports a variety of load-securing and cargo-handling applications.
+
+### Design Requirements
+
+Create a distinctive, premium B2B industrial design that matches the existing Apex Liftex website.
+
+- Use a refined 2×2 grid on desktop, adapting gracefully to smaller screens.
+- Use the existing website's typography, colors, spacing system, and animation library.
+- Give each feature a unique, minimal technical icon or custom line illustration.
+- Use strong typography hierarchy, intentional whitespace, and subtle dividers.
+- Use restrained scroll-reveal animations and sophisticated hover interactions.
+- Avoid generic rounded cards, oversized decorative icons, excessive gradients, and repetitive AI-style layouts.
+- Keep all four features visually balanced and easy to scan.
+- Ensure accessibility, responsive behavior, and reduced-motion support.
+
+Do not copy Elasto Textile's icons or visual design directly.
+
+Do not add unverified claims about manufacturing, certifications, load capacity, testing, years of experience, or guaranteed delivery.
+
+Implement the section directly in the existing codebase, reuse existing components where possible, and verify that unrelated parts of the website remain unchanged.

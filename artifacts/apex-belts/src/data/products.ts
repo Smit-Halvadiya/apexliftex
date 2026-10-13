@@ -70,7 +70,7 @@ export const products: Product[] = [
     code: 'RLK / 03',
     eyebrow: 'MECHANICAL HARDWARE',
     intro: 'The mechanical interface between force and control, designed for intuitive handling in demanding conditions.',
-    detail: 'Hardware platform for Apex Belts assemblies and customer-specific integration. Geometry, coating and load data: editable placeholder.',
+    detail: 'Hardware platform for Apex Liftex assemblies and customer-specific integration. Geometry, coating and load data: editable placeholder.',
     color: '#c7611f',
     features: ['Positive engagement', 'Tactile operation', 'Assembly-ready platform'],
     applications: ['Industrial equipment', 'Fleet operations', 'Load restraint'],

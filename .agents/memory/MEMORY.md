@@ -1,0 +1,1 @@
+- [Apex Liftex manufacturing scope](apex-liftex-manufacturing-scope.md) — Apex Liftex does not manufacture these products; avoid production-scene imagery or claims.
