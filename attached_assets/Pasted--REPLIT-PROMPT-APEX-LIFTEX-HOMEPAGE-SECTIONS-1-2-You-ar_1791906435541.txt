@@ -1,0 +1,288 @@
+## REPLIT PROMPT — APEX LIFTEX HOMEPAGE SECTIONS 1 & 2
+
+You are editing an EXISTING website for **Apex Liftex**. The website has already been developed, and its current codebase, design system, components, typography, colors, animations, and responsive layouts must be preserved.
+
+Your task is to implement and professionally refine ONLY the following two homepage sections:
+
+1. Hero Section
+2. About Apex Liftex Section
+
+**CRITICAL: This is an existing-project editing task, NOT a website rebuild.**
+
+Do not recreate the website from scratch. Do not modify unrelated pages or components. Do not redesign the entire homepage. First inspect the existing codebase, identify the homepage entry point, understand its styling and animation system, and then make the smallest set of changes required to implement these two sections.
+
+---
+
+# 1. STRICT SCOPE RESTRICTIONS
+
+Only work on the Hero Section and About Apex Liftex Section.
+
+You MUST NOT:
+
+- Change the existing navbar or header.
+- Change the footer.
+- Modify any other homepage sections.
+- Create additional sections.
+- Change the global color palette or typography system.
+- Replace the existing tech stack.
+- Modify routing or existing page URLs.
+- Change existing product pages.
+- Install unnecessary dependencies.
+- Remove existing functionality.
+- Rewrite existing components that are unrelated to these two sections.
+- Make unrelated code refactors.
+- Replace the entire homepage with a new template.
+- Change existing content outside the specified sections.
+
+Reuse the existing project architecture, design tokens, components, and animation libraries wherever possible.
+
+If either target section already exists, update that section in place rather than duplicating it.
+
+The final result must integrate naturally into the existing website.
+
+# 2. SECTION ONE — HERO
+
+Use the following EXACT copy. Do not rewrite, shorten, or replace the provided content.
+
+Eyebrow label:
+
+LOAD SECUREMENT SOLUTIONS
+
+Main headline:
+
+High-Strength Ratchet Lashing Belts Built for Reliable Load Security.
+
+Supporting description:
+
+Discover dependable ratchet lashing belts, industrial webbing belts, ratchet locks, and hooks designed for demanding cargo securing applications.
+
+Primary CTA:
+
+Explore Products
+
+Secondary CTA:
+
+Request a Quote
+
+Preserve this copy exactly, including capitalization and punctuation.
+
+## Design Direction
+
+Create a premium, editorial-quality industrial product hero that feels custom-designed for an international B2B brand.
+
+The result should communicate precision, product reliability, engineering, and industrial sophistication.
+
+Do not use a generic SaaS hero template.
+
+Use the existing brand identity and color system. Do not introduce a new palette or change the website's existing typography.
+
+### Layout
+
+- Use a visually balanced two-column composition on desktop, if compatible with the existing design.
+- Give the headline a strong typographic hierarchy.
+- Keep the supporting description readable, with a controlled line length.
+- Make the primary CTA visually prominent.
+- Style the secondary CTA with a restrained, premium treatment.
+- Use generous spacing and precise alignment.
+- Maintain enough negative space to prevent the section from feeling crowded.
+
+### Product Visual
+
+Use a high-quality, realistic product photograph featuring industrial ratchet lashing belts, webbing, or relevant load-securing hardware.
+
+The product must be the visual focal point.
+
+Use a large, carefully composed image with realistic materials and visible product details.
+
+Avoid generic factory stock photos, irrelevant machinery, abstract AI-generated shapes, and decorative elements that do not relate to the actual products.
+
+Prefer existing Apex Liftex assets already present in the project. If suitable assets are unavailable, use a relevant temporary image that can be replaced easily later.
+
+Do not fabricate product certifications, load capacities, technical specifications, or safety claims.
+
+### Animation
+
+Use the existing animation library and motion conventions.
+
+Add restrained, premium entrance animations:
+
+- Headline reveals smoothly.
+- Supporting copy appears with a subtle stagger.
+- CTA buttons enter naturally.
+- The product image has a subtle entrance movement.
+- Optional technical details may animate only if they complement the current design.
+
+Keep the animation smooth, purposeful, and performant.
+
+Do not add excessive parallax, distracting motion, or animation effects that interfere with reading.
+
+Respect reduced-motion preferences.
+
+# 3. SECTION TWO — ABOUT APEX LIFTEX
+
+Place this section immediately after the Hero Section, without moving, removing, or altering any other existing homepage sections.
+
+Use the following EXACT copy.
+
+Eyebrow:
+
+ABOUT APEX LIFTEX
+
+Headline:
+
+Reliable Load Securing. Built Around Your Needs.
+
+Description:
+
+Apex Liftex provides dependable load-securing products for industrial, transportation, and cargo-handling applications. Our range includes ratchet lashing belts, roll belts, ratchet locks, and hooks designed to support secure and efficient load restraint.
+
+We focus on helping businesses find the right products for their operational requirements, with an emphasis on product reliability, practical functionality, and consistent service. Whether you need individual components or solutions for ongoing industrial requirements, Apex Liftex is committed to supporting your business with the right products.
+
+Feature 1:
+
+Product-Focused Solutions
+
+A practical range of belts, locks, and hooks for load-securing applications.
+
+Feature 2:
+
+Reliable Product Selection
+
+Options suited to different operational and cargo-handling requirements.
+
+Feature 3:
+
+B2B Supply Support
+
+Responsive assistance for business buyers, distributors, and industrial customers.
+
+Preserve every heading, paragraph, and feature exactly as supplied.
+
+Do not add fake company history, years of experience, statistics, certifications, testimonials, or unsupported performance claims.
+
+## Design Direction
+
+Create a distinctive premium section rather than a conventional corporate About Us block.
+
+The design should feel intentional, modern, technical, and visually connected to the Hero Section.
+
+Use a refined layout with strong typography, generous whitespace, and carefully composed product photography.
+
+### Layout
+
+- Place the eyebrow and main headline prominently.
+- Present the two paragraphs in a comfortable, readable text column.
+- Display the three features in a refined layout with excellent visual hierarchy.
+- Use subtle dividers, small technical labels, or minimal icons only when they improve readability.
+- Avoid turning everything into rounded cards.
+- Avoid generic three-card layouts with large decorative icons.
+- Avoid unnecessary borders, shadows, gradients, and glassmorphism.
+
+The section should feel like a bespoke industrial brand website designed by a professional digital design studio.
+
+### Three Product Images
+
+Include exactly three primary product visuals in this section:
+
+1. Ratchet Lashing Belts
+2. Roll Belts
+3. Ratchet Locks & Hooks
+
+Use existing Apex Liftex product images if available.
+
+Each image must show the correct product category clearly. Do not substitute unrelated industrial equipment.
+
+Maintain consistent image quality, crop, lighting, and presentation across all three visuals.
+
+Use a visually interesting editorial arrangement rather than three identical, generic product cards, provided it fits the existing design system.
+
+Each image should have an appropriate accessible alt description.
+
+Do not invent product features or overlay unverified technical specifications.
+
+If a suitable image is unavailable, use an easily replaceable placeholder rather than creating misleading product imagery.
+
+# 4. VISUAL QUALITY REQUIREMENTS
+
+The final implementation must look exceptionally polished.
+
+Pay close attention to:
+
+- Typography hierarchy.
+- Consistent spacing.
+- Image proportions.
+- Content alignment.
+- Contrast and readability.
+- Button styling.
+- Responsive behavior.
+- Section transitions.
+- Existing brand consistency.
+- Fine details and hover states.
+
+Avoid the predictable appearance of an AI-generated website.
+
+Do not add unnecessary UI elements simply to make the sections look more complicated.
+
+The design should be visually distinctive because of its composition, typography, photography, and attention to detail.
+
+# 5. RESPONSIVE DESIGN
+
+Ensure both sections work correctly across:
+
+- Desktop screens.
+- Laptops.
+- Tablets.
+- Mobile phones.
+
+On mobile:
+
+- Stack content naturally.
+- Maintain readable headline sizes.
+- Prevent horizontal overflow.
+- Keep CTAs easy to tap.
+- Ensure all product images remain clear.
+- Prevent animations from disrupting the reading experience.
+
+Do not change the responsive behavior of unrelated sections.
+
+# 6. FUNCTIONAL REQUIREMENTS
+
+The Explore Products CTA must use the website's existing product listing route or product section destination, whichever already exists.
+
+The Request a Quote CTA must use the existing quote or contact destination.
+
+Do not create new routes or placeholder pages just to support these buttons.
+
+Preserve existing link behavior and navigation conventions.
+
+Ensure there are no broken links, missing images, duplicate sections, console errors, or layout regressions introduced by your changes.
+
+# 7. IMPLEMENTATION WORKFLOW
+
+Follow this exact sequence:
+
+1. Inspect the current project structure and identify the existing homepage and relevant styles.
+2. Identify existing product assets and reusable components.
+3. Locate the existing Hero and About sections.
+4. Update only those sections in place.
+5. Reuse the current typography, colors, spacing system, and animation libraries.
+6. Verify that the original section order is preserved.
+7. Check the implementation on desktop and mobile.
+8. Fix any issues directly related to the changes.
+
+Do not stop after producing a visual mockup. Implement the changes in the existing codebase.
+
+# FINAL ACCEPTANCE CRITERIA
+
+The task is complete only when:
+
+- The Hero Section uses the exact supplied copy.
+- The About Section uses the exact supplied copy.
+- Three relevant product visuals are included in the About Section.
+- Both sections look premium and cohesive with the existing website.
+- The existing navbar, footer, other sections, pages, routes, and functionality remain unchanged.
+- Both sections are responsive.
+- Existing CTA destinations work correctly.
+- No unrelated files or functionality have been unnecessarily modified.
+
+**Most important instruction: Make only the requested changes. Preserve everything else exactly as it is.**
