@@ -1,5 +1,5 @@
 import { type CSSProperties, type FormEvent, type ReactNode, useEffect, useState } from 'react';
-import { ArrowDownRight, ArrowRight, Check, Download, FileText, Menu, Minus, Plus, X, ArrowUpRight } from 'lucide-react';
+import { ArrowDownRight, ArrowRight, Check, Clock3, Download, FileText, Mail, MapPin, Menu, Minus, Phone, Plus, X, ArrowUpRight } from 'lucide-react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Link, Route, Switch } from 'wouter';
 import apexLiftexLogo from '@assets/apex_logo_with_white_(1)_1791906752557.png';
@@ -59,7 +59,61 @@ function Header() {
 }
 
 function Footer() {
-  return <footer className="bg-[var(--ink)] px-5 pb-7 pt-20 text-[var(--frost)] lg:px-10"><div className="mx-auto max-w-[1440px]"><div className="grid gap-12 border-b border-[var(--sage)]/20 pb-16 md:grid-cols-[1.2fr_.8fr_.8fr]"><div><Logo /><p className="mt-8 max-w-sm text-sm leading-7 text-[var(--sage)]">Precision-engineered belts and load-securing solutions for the routes, yards and operations that keep industry moving.</p></div><div><p className="mono mb-5 text-[10px] uppercase tracking-[.16em] text-[var(--teal)]">Explore</p>{nav.slice(0, 4).map((item) => <Link key={item.href} href={item.href} className="mb-3 block text-sm text-[var(--mist)] hover:text-[var(--lime)]" data-testid={`link-footer-${item.label.toLowerCase()}`}>{item.label}</Link>)}</div><div><p className="mono mb-5 text-[10px] uppercase tracking-[.16em] text-[var(--teal)]">Start a conversation</p><p className="text-sm leading-6 text-[var(--sage)]">Contact details<br />editable placeholder</p><Link href="/quote" className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[var(--lime)]" data-testid="link-footer-quote">Request a quote <ArrowRight size={16} /></Link></div></div><div className="flex flex-col justify-between gap-3 pt-5 text-[10px] uppercase tracking-[.13em] text-[var(--sage)] md:flex-row"><span>© {new Date().getFullYear()} Apex Liftex / Apex Engineering</span><span>Built for the load. Designed for the journey.</span></div></div></footer>;
+  return (
+    <footer className="bg-[var(--ink)] px-5 pb-7 pt-20 text-[var(--frost)] lg:px-10">
+      <div className="mx-auto max-w-[1440px]">
+        <div className="grid gap-12 border-b border-[var(--sage)]/20 pb-16 md:grid-cols-[1.2fr_.75fr_1.55fr]">
+          <div>
+            <Logo />
+            <p className="mt-8 max-w-sm text-sm leading-7 text-[var(--sage)]">
+              Precision-engineered belts and load-securing solutions for the routes, yards and operations that keep industry moving.
+            </p>
+          </div>
+          <div>
+            <p className="mono mb-5 text-[10px] uppercase tracking-[.16em] text-[var(--teal)]">Explore</p>
+            {nav.slice(0, 4).map((item) => (
+              <Link key={item.href} href={item.href} className="mb-3 block text-sm text-[var(--mist)] hover:text-[var(--orange-bright)]" data-testid={`link-footer-${item.label.toLowerCase()}`}>
+                {item.label}
+              </Link>
+            ))}
+          </div>
+          <div>
+            <p className="mono mb-5 text-[10px] uppercase tracking-[.16em] text-[var(--teal)]">Contact Info</p>
+            <div className="space-y-4 text-[12px] leading-6 text-[var(--sage)]">
+              <div className="flex items-start gap-3">
+                <MapPin size={15} className="mt-1 shrink-0 text-[var(--orange-bright)]" aria-hidden="true" />
+                <address className="not-italic">
+                  PLOT NO.7 , SHED NO. 1 AND 2 , SHREE HARI OM INDUSTRIAL ESATATE,<br />
+                  NR.SANDHIYA POOL , SWATI PARK MAIN ROAD , KOTHARIYA RING ROAD ,<br />
+                  KOTHARIYA , RAJKOT.<br />
+                  GUJARAT - 360022
+                </address>
+              </div>
+              <a href="tel:+916353328702" className="flex w-fit items-center gap-3 transition-colors hover:text-[var(--orange-bright)]" aria-label="Call Apex Liftex at +91 63533 28702">
+                <Phone size={15} className="shrink-0 text-[var(--orange-bright)]" aria-hidden="true" />
+                <span>+91 63533 28702</span>
+              </a>
+              <a href="mailto:info@apexliftex.com" className="flex w-fit items-center gap-3 transition-colors hover:text-[var(--orange-bright)]">
+                <Mail size={15} className="shrink-0 text-[var(--orange-bright)]" aria-hidden="true" />
+                <span>info@apexliftex.com</span>
+              </a>
+              <p className="flex items-center gap-3">
+                <Clock3 size={15} className="shrink-0 text-[var(--orange-bright)]" aria-hidden="true" />
+                <span>Mon - Sat: 9:00 AM - 6:00 PM</span>
+              </p>
+            </div>
+            <Link href="/quote" className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[var(--orange-bright)]" data-testid="link-footer-quote">
+              Request a quote <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+        <div className="flex flex-col justify-between gap-3 pt-5 text-[10px] uppercase tracking-[.13em] text-[var(--sage)] md:flex-row">
+          <span>© 2026 ApexEngineering. All rights reserved.</span>
+          <span>Built for the load. Designed for the journey.</span>
+        </div>
+      </div>
+    </footer>
+  );
 }
 
 function Shell({ children }: { children: ReactNode }) {
@@ -236,6 +290,14 @@ function AboutApexLiftex() {
 
 function WhyChooseApexLiftex() {
   const reducedMotion = useReducedMotion();
+  const shouldAnimate = reducedMotion === false;
+  useEffect(() => {
+    if (window.location.hash !== '#why-choose-apex-liftex') return;
+    const frame = window.requestAnimationFrame(() => {
+      document.getElementById('why-choose-apex-liftex')?.scrollIntoView({ block: 'start', behavior: 'auto' });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
   const features = [
     {
       number: '01',
@@ -268,41 +330,118 @@ function WhyChooseApexLiftex() {
   ];
 
   return (
-    <section className="bg-[var(--ink)] px-5 py-20 text-[var(--frost)] lg:px-10 lg:py-28">
-      <div className="mx-auto max-w-[1440px]">
-        <SectionLabel num="WHY CHOOSE APEX LIFTEX" light>{null}</SectionLabel>
-        <h2 className="display mt-8 max-w-4xl text-[clamp(2.8rem,5.4vw,5.8rem)] leading-[.93] tracking-[-.07em]">
-          The Right Products. Reliable Business Support.
-        </h2>
-        <div className="mt-14 grid gap-x-12 border-t border-[var(--sage)]/25 md:grid-cols-2 lg:mt-20">
+    <section id="why-choose-apex-liftex" className="site-grid-dark scroll-mt-20 relative overflow-hidden bg-[var(--slate)] px-5 py-20 text-[var(--frost)] lg:px-10 lg:py-28">
+      <div className="pointer-events-none absolute -right-36 -top-40 h-[34rem] w-[34rem] rounded-full border border-[var(--orange)]/[.09]" aria-hidden="true" />
+      <div className="pointer-events-none absolute -right-24 -top-28 h-[28rem] w-[28rem] rounded-full border border-[var(--orange)]/[.07]" aria-hidden="true" />
+      <div className="relative mx-auto max-w-[1440px]">
+        <div className="grid items-center gap-10 lg:grid-cols-[.9fr_1.1fr] lg:gap-16">
+          <motion.div
+            initial={shouldAnimate ? { opacity: 0, y: 18 } : { opacity: 1, y: 0 }}
+            whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+          >
+            <div className="mono flex items-center gap-3 text-[10px] uppercase tracking-[.18em] text-[var(--orange-bright)]">
+              <span className="h-px w-7 bg-current" aria-hidden="true" />
+              WHY CHOOSE APEX LIFTEX
+            </div>
+            <h2 className="display mt-7 max-w-3xl text-[clamp(2.8rem,5.4vw,5.8rem)] leading-[.93] tracking-[-.07em]">
+              The Right Products.
+              <span className="mt-1 block text-[var(--orange-bright)]">Reliable Business Support.</span>
+            </h2>
+            <div className="mt-8 flex items-center gap-3">
+              <span className="relative flex h-2 w-2" aria-hidden="true">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--orange)] opacity-50 motion-reduce:animate-none" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--orange-bright)]" />
+              </span>
+              <span className="mono text-[9px] uppercase tracking-[.15em] text-[var(--sage)]">
+                Product choice / business support
+              </span>
+            </div>
+          </motion.div>
+
+          <motion.figure
+            initial={shouldAnimate ? { opacity: 0, x: 24 } : { opacity: 1, x: 0 }}
+            whileInView={shouldAnimate ? { opacity: 1, x: 0 } : undefined}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, ease: 'easeOut', delay: 0.08 }}
+            className="group relative"
+          >
+            <div className="relative aspect-[4/3] overflow-hidden border border-[var(--sage)]/25 bg-[var(--ink)]">
+              <img
+                src={products[1].primaryImage.src}
+                alt={products[1].primaryImage.alt}
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.035]"
+                style={{ objectPosition: products[1].primaryImage.position ?? 'center 64%' }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[rgba(17,19,21,.66)] via-transparent to-[rgba(17,19,21,.08)]" aria-hidden="true" />
+              {shouldAnimate && (
+                <motion.span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-x-0 top-1/2 z-10 h-px bg-[var(--orange-bright)]/70 shadow-[0_0_14px_rgba(255,156,50,.65)]"
+                  animate={{ y: ['-70px', '70px', '-70px'], opacity: [0, 0.55, 0] }}
+                  transition={{ duration: 7, ease: 'linear', repeat: Infinity }}
+                />
+              )}
+              <div className="absolute inset-3 border border-white/15 md:inset-5" aria-hidden="true" />
+              <div className="absolute left-5 top-5 z-10 flex items-center gap-3">
+                <span className="mono border border-[var(--orange)]/55 bg-[rgba(17,19,21,.72)] px-3 py-2 text-[8px] uppercase tracking-[.16em] text-[var(--frost)]">
+                  APX / {products[1].code}
+                </span>
+                <span className="mono text-[8px] uppercase tracking-[.14em] text-white/75">Product study</span>
+              </div>
+              <div className="absolute bottom-5 left-5 z-10 flex items-end gap-3">
+                <span className="h-7 w-px bg-[var(--orange-bright)]" aria-hidden="true" />
+                <figcaption className="mono text-[9px] uppercase tracking-[.14em] text-white/85">
+                  Ratchet / webbing / hook
+                </figcaption>
+              </div>
+              <span className="absolute bottom-5 right-5 z-10 mono text-[8px] uppercase tracking-[.14em] text-white/55">
+                APEX LIFTEX — LOAD SECUREMENT
+              </span>
+            </div>
+            <div className="mt-3 flex items-center justify-between">
+              <span className="mono text-[8px] uppercase tracking-[.14em] text-[var(--sage)]/75">Industrial product system</span>
+              <span className="mono text-[8px] uppercase tracking-[.14em] text-[var(--orange-bright)]">01 / 04</span>
+            </div>
+          </motion.figure>
+        </div>
+
+        <div className="mt-12 grid gap-px border border-[var(--sage)]/25 bg-[var(--sage)]/25 md:grid-cols-2 lg:mt-16">
           {features.map((feature, index) => (
             <motion.article
               key={feature.number}
-              initial={reducedMotion ? false : { opacity: 0, y: 20 }}
-              whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.55, ease: 'easeOut', delay: index * 0.07 }}
-              className="group border-b border-[var(--sage)]/25 py-8 transition-colors duration-300 hover:bg-white/[.025] md:min-h-[270px] md:py-10"
+              initial={shouldAnimate ? { opacity: 0, y: 22 } : { opacity: 1, y: 0 }}
+              whileInView={shouldAnimate ? { opacity: 1, y: 0 } : undefined}
+              viewport={{ once: true, amount: 0.12 }}
+              transition={{ duration: 0.55, ease: 'easeOut', delay: index * 0.08 }}
+              className="group relative overflow-hidden bg-[var(--ink)] p-6 transition-colors duration-300 hover:bg-[#15191b] md:min-h-[270px] md:p-8"
             >
-              <div className="flex gap-5 md:gap-7">
-                <span className="mono pt-1 text-[10px] tracking-[.12em] text-[var(--orange-bright)]">
-                  {feature.number}
-                </span>
-                <div className="min-w-0">
-                  <div className="mb-6 flex items-center justify-between gap-4">
-                    <span className="text-[var(--orange-bright)] transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
-                      {feature.icon}
-                    </span>
-                    <span className="mono text-right text-[9px] uppercase tracking-[.15em] text-[var(--sage)]/70">
-                      {feature.category}
-                    </span>
-                  </div>
-                  <h3 className="display max-w-lg text-2xl leading-tight tracking-[-.04em] transition-colors duration-300 group-hover:text-[var(--orange-bright)] md:text-3xl">
-                    {feature.title}
-                  </h3>
-                  <p className="mt-4 max-w-xl text-sm leading-7 text-[var(--sage)]">
-                    {feature.description}
-                  </p>
+              <span className="pointer-events-none absolute inset-3 border border-[var(--sage)]/[.12] transition-colors duration-300 group-hover:border-[var(--orange)]/35" aria-hidden="true" />
+              <span className="pointer-events-none absolute left-3 top-3 h-5 w-5 border-l border-t border-[var(--orange)]/70" aria-hidden="true" />
+              <span className="pointer-events-none absolute bottom-3 right-3 h-5 w-5 border-b border-r border-[var(--orange)]/45" aria-hidden="true" />
+              <div className="relative flex h-full flex-col">
+                <div className="flex items-start justify-between gap-5">
+                  <span className="display text-5xl leading-none tracking-[-.08em] text-[var(--sage)]/20 transition-colors duration-300 group-hover:text-[var(--orange-bright)]/35">
+                    {feature.number}
+                  </span>
+                  <span className="grid h-10 w-10 place-items-center border border-[var(--orange)]/35 text-[var(--orange-bright)] transition-all duration-300 group-hover:border-[var(--orange-bright)] group-hover:bg-[var(--orange)]/10 group-hover:shadow-[0_0_18px_rgba(244,123,32,.16)]" aria-hidden="true">
+                    {feature.icon}
+                  </span>
+                </div>
+                <p className="mono mt-5 text-[9px] uppercase tracking-[.14em] text-[var(--orange-bright)]">
+                  {feature.category}
+                </p>
+                <h3 className="display mt-3 max-w-lg text-2xl leading-tight tracking-[-.04em] text-[var(--frost)] transition-colors duration-300 group-hover:text-[var(--orange-bright)] md:text-3xl">
+                  {feature.title}
+                </h3>
+                <p className="mt-3 max-w-xl text-sm leading-7 text-[var(--sage)]">
+                  {feature.description}
+                </p>
+                <div className="relative mt-auto pt-7" aria-hidden="true">
+                  <span className="block h-px w-10 bg-[var(--orange)]/50 transition-all duration-500 group-hover:w-20 group-hover:bg-[var(--orange-bright)]" />
                 </div>
               </div>
             </motion.article>
@@ -541,7 +680,7 @@ function GalleryPage() {
                   <img
                     src={image.src}
                     alt={image.alt}
-                    loading={index < 3 ? 'eager' : 'lazy'}
+                    loading="eager"
                     decoding="async"
                     className="absolute inset-0 z-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.035]"
                     style={{ objectPosition: image.position ?? 'center' }}
