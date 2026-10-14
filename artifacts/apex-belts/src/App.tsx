@@ -1,12 +1,15 @@
-import { type CSSProperties, type FormEvent, type ReactNode, useEffect, useState } from 'react';
-import { ArrowDownRight, ArrowRight, Check, Clock3, Download, FileText, Mail, MapPin, Menu, Minus, Phone, Plus, X, ArrowUpRight } from 'lucide-react';
+import { type CSSProperties, type ReactNode, useEffect, useRef, useState } from 'react';
+import { ArrowDownRight, ArrowRight, Check, ChevronDown, Clock3, Download, FileText, Mail, MapPin, Menu, Minus, Phone, Plus, X, ArrowUpRight } from 'lucide-react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { Link, Route, Switch } from 'wouter';
+import { Link, Route, Switch, useLocation } from 'wouter';
 import apexLiftexLogo from '@assets/apex_logo_with_white_(1)_1791906752557.png';
 import dispatchImage from '@assets/generated_images/apex-liftex-order-coordination.jpg';
-import { products, productBySlug, type Product, type ProductImage } from './data/products';
+import { catalogCategories, getCatalogCategory, getCatalogVariant, type CatalogCategory, type CatalogVariant } from './data/catalog';
+import InquiryForm from './components/inquiry-form';
+import { CategoryPageContent, VariantPageContent } from './pages/catalog-pages';
+import { products, type Product, type ProductImage } from './data/products';
 
-function Seo({ title, description }: { title: string; description: string }) {
+function Seo({ title, description, canonicalPath }: { title: string; description: string; canonicalPath?: string }) {
   useEffect(() => {
     document.title = `${title} — APEX LIFTEX`;
     const meta = document.querySelector('meta[name="description"]') ?? document.createElement('meta');
@@ -22,7 +25,11 @@ function Seo({ title, description }: { title: string; description: string }) {
     favicon.setAttribute('type', 'image/png');
     favicon.setAttribute('href', apexLiftexLogo);
     document.head.appendChild(favicon);
-  }, [title, description]);
+    const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]') ?? document.createElement('link');
+    canonical.setAttribute('rel', 'canonical');
+    canonical.setAttribute('href', new URL(canonicalPath ?? window.location.pathname, window.location.origin).toString());
+    document.head.appendChild(canonical);
+  }, [title, description, canonicalPath]);
   return null;
 }
 
@@ -49,13 +56,187 @@ function Logo() {
 
 function Header() {
   const [open, setOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+  const [mobileExpandedCategory, setMobileExpandedCategory] = useState<string | null>(null);
+  const productsToggle = useRef<HTMLButtonElement>(null);
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-  return <header className={`fixed inset-x-0 top-0 z-20 transition-all duration-300 ${scrolled ? 'bg-[rgba(17,19,21,.92)] backdrop-blur-md' : 'bg-transparent'}`}><div className="mx-auto flex max-w-[1440px] items-center justify-between px-5 py-4 lg:px-10"><Logo /><nav className="hidden items-center gap-7 lg:flex">{nav.map((item) => <Link key={item.href} href={item.href} className="text-[11px] font-semibold uppercase tracking-[.13em] text-[var(--mist)] transition-colors hover:text-[var(--lime)]" data-testid={`link-nav-${item.label.toLowerCase()}`}>{item.label}</Link>)}<Link href="/quote" className="group ml-3 flex items-center gap-3 bg-[var(--lime)] px-4 py-3 text-[11px] font-bold uppercase tracking-[.12em] text-[var(--ink)]" data-testid="link-request-quote">Request a quote <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></Link></nav><button className="text-[var(--frost)] lg:hidden" onClick={() => setOpen(!open)} aria-label="Toggle menu" data-testid="button-mobile-menu">{open ? <X /> : <Menu />}</button></div>{open && <div className="border-t border-[var(--sage)]/20 bg-[var(--ink)] px-5 pb-7 lg:hidden">{nav.map((item) => <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="block border-b border-[var(--sage)]/20 py-4 text-sm font-semibold uppercase tracking-[.1em] text-[var(--mist)]" data-testid={`link-mobile-${item.label.toLowerCase()}`}>{item.label}</Link>)}<Link href="/quote" onClick={() => setOpen(false)} className="mt-5 flex items-center justify-between bg-[var(--lime)] px-4 py-4 text-xs font-bold uppercase tracking-[.12em] text-[var(--ink)]" data-testid="link-mobile-quote">Request a quote <ArrowRight size={16} /></Link></div>}</header>;
+  const variantHref = (category: CatalogCategory, variant: CatalogVariant) =>
+    `/products/${category.slug}/${variant.slug}`;
+  const closeMobileMenu = () => setOpen(false);
+
+  return (
+    <header className={`fixed inset-x-0 top-0 z-20 transition-all duration-300 ${scrolled ? 'bg-[rgba(17,19,21,.92)] backdrop-blur-md' : 'bg-transparent'}`}>
+      <div className="mx-auto flex max-w-[1440px] items-center justify-between px-5 py-4 lg:px-10">
+        <Logo />
+        <nav aria-label="Main navigation" className="hidden items-center gap-6 lg:flex">
+          {nav.map((item) => item.label === 'Products' ? (
+            <div
+              key="desktop-products"
+              className="relative"
+              onMouseEnter={() => setProductsOpen(true)}
+              onMouseLeave={() => setProductsOpen(false)}
+              onBlur={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setProductsOpen(false);
+              }}
+              onKeyDown={(event) => {
+                if (event.key === 'Escape') {
+                  setProductsOpen(false);
+                  productsToggle.current?.focus();
+                }
+              }}
+            >
+              <div className="flex items-center gap-1">
+                <Link
+                  href="/products"
+                  onClick={() => setProductsOpen(false)}
+                  className="text-[11px] font-semibold uppercase tracking-[.13em] text-[var(--mist)] transition-colors hover:text-[var(--orange-bright)]"
+                  data-testid="link-nav-products"
+                >
+                  Products
+                </Link>
+                <button
+                  ref={productsToggle}
+                  type="button"
+                  aria-label="Open product categories and variants"
+                  aria-haspopup="true"
+                  aria-expanded={productsOpen}
+                  aria-controls="products-mega-menu"
+                  onClick={() => setProductsOpen((current) => !current)}
+                  className="p-1 text-[var(--mist)] transition-colors hover:text-[var(--orange-bright)]"
+                  data-testid="button-products-mega-menu"
+                >
+                  <ChevronDown size={14} className={`transition-transform ${productsOpen ? 'rotate-180' : ''}`} />
+                </button>
+              </div>
+              {productsOpen && (
+                <div
+                  id="products-mega-menu"
+                  className="fixed left-1/2 top-[88px] z-50 w-[min(1320px,calc(100vw-40px))] -translate-x-1/2 overflow-y-auto border border-[var(--sage)]/25 bg-[rgba(17,19,21,.98)] shadow-[0_24px_70px_rgba(0,0,0,.38)] backdrop-blur-xl"
+                  style={{ maxHeight: 'calc(100dvh - 110px)' }}
+                >
+                  <div className="grid gap-0 md:grid-cols-2 xl:grid-cols-4">
+                    {catalogCategories.map((category) => (
+                      <div key={category.slug} className="border-b border-[var(--sage)]/20 p-5 md:border-r xl:border-b-0">
+                        <Link
+                          href={`/products/${category.slug}`}
+                          onClick={() => setProductsOpen(false)}
+                          className="display block border-b border-[var(--sage)]/20 pb-4 text-xl text-[var(--frost)] transition-colors hover:text-[var(--orange-bright)]"
+                          data-testid={`link-mega-category-${category.slug}`}
+                        >
+                          {category.name}
+                          <span className="mono mt-1 block text-[9px] uppercase tracking-[.14em] text-[var(--sage)]">
+                            {String(category.variants.length).padStart(2, '0')} variants
+                          </span>
+                        </Link>
+                        <div className="mt-3 space-y-1">
+                          {category.variants.map((variant) => (
+                            <Link
+                              key={variant.slug}
+                              href={variantHref(category, variant)}
+                              onClick={() => setProductsOpen(false)}
+                              className="block py-1.5 text-[11px] leading-5 text-[var(--sage)] transition-colors hover:text-[var(--orange-bright)]"
+                              data-testid={`link-mega-variant-${category.slug}-${variant.slug}`}
+                            >
+                              {variant.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link key={item.href} href={item.href} className="text-[11px] font-semibold uppercase tracking-[.13em] text-[var(--mist)] transition-colors hover:text-[var(--orange-bright)]" data-testid={`link-nav-${item.label.toLowerCase()}`}>
+              {item.label}
+            </Link>
+          ))}
+          <Link href="/quote" className="group ml-1 flex items-center gap-3 bg-[var(--orange)] px-4 py-3 text-[11px] font-bold uppercase tracking-[.12em] text-[var(--ink)]" data-testid="link-request-quote">
+            Request a quote <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
+        </nav>
+        <button className="text-[var(--frost)] lg:hidden" onClick={() => setOpen((current) => !current)} aria-label="Toggle menu" aria-expanded={open} data-testid="button-mobile-menu">
+          {open ? <X /> : <Menu />}
+        </button>
+      </div>
+      {open && (
+        <div className="max-h-[calc(100dvh-88px)] overflow-y-auto border-t border-[var(--sage)]/20 bg-[var(--ink)] px-5 pb-7 lg:hidden">
+          <nav aria-label="Mobile navigation">
+            {nav.map((item) => item.label === 'Products' ? (
+              <div key="mobile-products" className="border-b border-[var(--sage)]/20">
+                <div className="flex items-center justify-between py-4">
+                  <Link href="/products" onClick={closeMobileMenu} className="text-sm font-semibold uppercase tracking-[.1em] text-[var(--mist)]" data-testid="link-mobile-products">
+                    Products
+                  </Link>
+                  <button
+                    type="button"
+                    aria-label="Expand product categories"
+                    aria-expanded={mobileProductsOpen}
+                    aria-controls="mobile-products-accordion"
+                    onClick={() => setMobileProductsOpen((current) => !current)}
+                    className="p-2 text-[var(--orange-bright)]"
+                    data-testid="button-mobile-products-accordion"
+                  >
+                    <ChevronDown size={18} className={`transition-transform ${mobileProductsOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                </div>
+                {mobileProductsOpen && (
+                  <div id="mobile-products-accordion" className="pb-4 pl-3">
+                    {catalogCategories.map((category) => {
+                      const expanded = mobileExpandedCategory === category.slug;
+                      return (
+                        <div key={category.slug} className="border-t border-[var(--sage)]/15">
+                          <div className="flex items-center justify-between gap-3 py-3">
+                            <Link href={`/products/${category.slug}`} onClick={closeMobileMenu} className="text-xs font-semibold text-[var(--frost)] hover:text-[var(--orange-bright)]" data-testid={`link-mobile-category-${category.slug}`}>
+                              {category.name}
+                            </Link>
+                            <button
+                              type="button"
+                              aria-label={`${expanded ? 'Collapse' : 'Expand'} ${category.name} variants`}
+                              aria-expanded={expanded}
+                              aria-controls={`mobile-variants-${category.slug}`}
+                              onClick={() => setMobileExpandedCategory(expanded ? null : category.slug)}
+                              className="p-1 text-[var(--sage)]"
+                              data-testid={`button-mobile-category-${category.slug}`}
+                            >
+                              <ChevronDown size={15} className={`transition-transform ${expanded ? 'rotate-180' : ''}`} />
+                            </button>
+                          </div>
+                          {expanded && (
+                            <div id={`mobile-variants-${category.slug}`} className="pb-3 pl-3">
+                              {category.variants.map((variant) => (
+                                <Link key={variant.slug} href={variantHref(category, variant)} onClick={closeMobileMenu} className="block py-2 text-[11px] text-[var(--sage)] hover:text-[var(--orange-bright)]" data-testid={`link-mobile-variant-${category.slug}-${variant.slug}`}>
+                                  {variant.name}
+                                </Link>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link key={item.href} href={item.href} onClick={closeMobileMenu} className="block border-b border-[var(--sage)]/20 py-4 text-sm font-semibold uppercase tracking-[.1em] text-[var(--mist)]" data-testid={`link-mobile-${item.label.toLowerCase()}`}>
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+          <Link href="/quote" onClick={closeMobileMenu} className="mt-5 flex items-center justify-between bg-[var(--orange)] px-4 py-4 text-xs font-bold uppercase tracking-[.12em] text-[var(--ink)]" data-testid="link-mobile-quote">
+            Request a quote <ArrowRight size={16} />
+          </Link>
+        </div>
+      )}
+    </header>
+  );
 }
 
 function Footer() {
@@ -66,7 +247,7 @@ function Footer() {
           <div>
             <Logo />
             <p className="mt-8 max-w-sm text-sm leading-7 text-[var(--sage)]">
-              Precision-engineered belts and load-securing solutions for the routes, yards and operations that keep industry moving.
+              Industrial load-securing products for transport, logistics and handling applications.
             </p>
           </div>
           <div>
@@ -126,7 +307,22 @@ function NotFound() {
 
 function ProductVisual({ product, large = false, image }: { product: Product; large?: boolean; image?: ProductImage }) {
   const photo = image ?? product.primaryImage;
-  return <div className={`product-visual product-photo-frame group relative overflow-hidden bg-[#242c2f] ${large ? 'h-[420px] md:h-[620px]' : 'h-[250px] md:h-[330px]'}`} style={{ '--accent-color': product.color } as CSSProperties}><img src={photo.src} alt={photo.alt} className="product-photo absolute inset-0 h-full w-full object-cover" style={{ objectPosition: photo.position ?? 'center' }} /><div className="absolute inset-0 site-grid-dark opacity-30" /><div className="absolute left-5 top-5 z-[1] border-l-2 border-[var(--accent-color)] pl-3"><span className="mono block text-[9px] uppercase tracking-[.14em] text-[var(--frost)]">APX / {product.code}</span><span className="mono mt-1 block text-[8px] uppercase tracking-[.12em] text-[var(--sage)]">{photo.label}</span></div><div className="absolute bottom-5 right-5 z-[1] mono text-[9px] tracking-[.1em] text-[var(--frost)]/70">FIELD IMAGE / {product.eyebrow}</div></div>;
+  return (
+    <div className={`product-visual product-photo-frame group relative overflow-hidden bg-[#242c2f] ${large ? 'h-[420px] md:h-[620px]' : 'h-[250px] md:h-[330px]'}`} style={{ '--accent-color': product.color } as CSSProperties}>
+      <img src={photo.src} alt={photo.alt} loading="lazy" decoding="async" className="product-photo absolute inset-0 h-full w-full object-cover" style={{ objectPosition: photo.position ?? 'center' }} />
+      <div className="absolute inset-0 site-grid-dark opacity-30" />
+      <div className="absolute left-5 top-5 z-[1] border-l-2 border-[var(--accent-color)] pl-3">
+        <span className="mono block text-[9px] uppercase tracking-[.14em] text-[var(--frost)]">APX / {product.code}</span>
+        <span className="mono mt-1 block text-[8px] uppercase tracking-[.12em] text-[var(--sage)]">{photo.label}</span>
+      </div>
+      {product.slug === 'hooks' && (
+        <span className="absolute right-5 top-5 z-[1] max-w-[190px] bg-[rgba(17,19,21,.78)] px-3 py-2 mono text-[8px] uppercase leading-4 tracking-[.1em] text-[var(--frost)]">
+          Range photo · exact J-hook photos pending
+        </span>
+      )}
+      <div className="absolute bottom-5 right-5 z-[1] mono text-[9px] tracking-[.1em] text-[var(--frost)]/70">CATALOGUE IMAGE / {product.eyebrow}</div>
+    </div>
+  );
 }
 
 function ProductGallery({ product, selected, onSelect }: { product: Product; selected: number; onSelect: (index: number) => void }) {
@@ -598,15 +794,54 @@ function PageIntro({ kicker, title, text }: { kicker: string; title: ReactNode; 
 }
 
 function ProductsPage() {
-  return <Shell><Seo title="Products" description="Explore Apex Liftex load-securing product families: roll belts, ratchet lashing belts, ratchet locks and hooks." /><PageIntro kicker="PRODUCT SYSTEMS / 01" title={<>Control is a<br /><em>system.</em></>} text="A focused range of industrial load-securing products. Designed to work together, specified around your application." /><section className="bg-[var(--mist)] px-5 pb-28 lg:px-10"><div className="mx-auto grid max-w-[1440px] gap-14 md:grid-cols-2">{products.map((product) => <Link href={`/products/${product.slug}`} key={product.slug} className="group border-t border-[var(--slate)]/25 pt-5" data-testid={`link-products-${product.slug}`}><div className="mb-5 flex justify-between"><span className="mono text-[10px] text-[var(--teal)]">{product.code}</span><span className="mono text-[10px] text-[var(--slate)]/50">EXPLORE <ArrowUpRight size={13} className="inline" /></span></div><ProductVisual product={product} /><h2 className="display mt-6 text-4xl tracking-[-.05em] text-[var(--ink)]">{product.name}</h2><p className="mt-3 max-w-md text-sm leading-6 text-[var(--slate)]/70">{product.detail}</p></Link>)}</div></section></Shell>;
+  return (
+    <Shell>
+      <Seo title="Products" description="Explore all Apex Liftex roll belts, ratchet lashing belts, ratchet locks and hooks." canonicalPath="/products" />
+      <PageIntro kicker="PRODUCT SYSTEMS / 01" title={<>Control is a<br /><em>system.</em></>} text="A focused range of industrial load-securing products. Browse each family and its listed variants." />
+      <section className="bg-[var(--mist)] px-5 pb-28 lg:px-10">
+        <div className="mx-auto grid max-w-[1440px] gap-14 md:grid-cols-2">
+          {catalogCategories.map((category) => (
+            <Link href={`/products/${category.slug}`} key={category.slug} className="group border-t border-[var(--slate)]/25 pt-5" data-testid={`link-products-${category.slug}`}>
+              <div className="mb-5 flex justify-between">
+                <span className="mono text-[10px] text-[var(--teal)]">{category.family.code}</span>
+                <span className="mono text-[10px] text-[var(--slate)]/50">{String(category.variants.length).padStart(2, '0')} VARIANTS <ArrowUpRight size={13} className="inline" /></span>
+              </div>
+              <ProductVisual product={category.family} />
+              <h2 className="display mt-6 text-4xl tracking-[-.05em] text-[var(--ink)]">{category.name}</h2>
+              <p className="mt-3 max-w-md text-sm leading-6 text-[var(--slate)]/70">{category.description}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+    </Shell>
+  );
 }
 
-function ProductPage({ slug }: { slug?: string }) {
-  const product = productBySlug(slug) ?? products[0];
-  const [tab, setTab] = useState('Overview');
-  const [selectedImage, setSelectedImage] = useState(0);
-  const tabs = ['Overview', 'Applications', 'Features', 'Technical'];
-  return <Shell><Seo title={product.name} description={product.intro} /><main><section className="bg-[var(--ink)] px-5 pb-20 pt-32 text-[var(--frost)] lg:px-10 lg:pb-28 lg:pt-40"><div className="mx-auto max-w-[1440px]"><Link href="/products" className="mono text-[10px] uppercase tracking-[.16em] text-[var(--teal)]" data-testid="link-back-products">← Product systems</Link><div className="mt-10 grid items-end gap-12 lg:grid-cols-[.8fr_1.2fr]"><div><span className="mono text-[10px] tracking-[.18em] text-[var(--lime)]">{product.code} / {product.eyebrow}</span><h1 className="display mt-5 text-6xl leading-[.88] tracking-[-.07em] md:text-8xl">{product.name}</h1><p className="mt-8 max-w-lg text-base leading-7 text-[var(--sage)]">{product.intro}</p><ButtonLink href="/quote">Discuss this product</ButtonLink></div><div><ProductVisual product={product} large image={product.gallery[selectedImage]} /><ProductGallery product={product} selected={selectedImage} onSelect={setSelectedImage} /></div></div></div></section><section className="bg-[var(--mist)] px-5 py-20 lg:px-10 lg:py-28"><div className="mx-auto max-w-[1440px]"><div className="flex flex-wrap gap-1 border-b border-[var(--slate)]/20">{tabs.map((item) => <button key={item} onClick={() => setTab(item)} className={`px-5 py-4 text-[11px] font-bold uppercase tracking-[.13em] ${tab === item ? 'bg-[var(--ink)] text-[var(--lime)]' : 'text-[var(--slate)]/60 hover:text-[var(--ink)]'}`} data-testid={`button-product-tab-${item.toLowerCase()}`}>{item}</button>)}</div><div className="grid gap-12 pt-14 lg:grid-cols-[.8fr_1.2fr]"><div><SectionLabel num="Product note">{tab}</SectionLabel><h2 className="display mt-5 text-5xl tracking-[-.06em] text-[var(--ink)]">{tab === 'Overview' ? 'Designed around the operator.' : tab === 'Technical' ? 'Specified with discipline.' : `${tab}, without compromise.`}</h2></div><div><p className="max-w-2xl text-base leading-8 text-[var(--slate)]/80">{product.detail}</p>{tab === 'Features' ? <div className="mt-8 grid gap-0 border-t border-[var(--slate)]/20">{product.features.map((feature) => <div key={feature} className="flex items-center gap-4 border-b border-[var(--slate)]/20 py-4"><Check size={16} className="text-[var(--teal)]" />{feature}</div>)}</div> : tab === 'Applications' ? <div className="mt-8 flex flex-wrap gap-2">{product.applications.map((application) => <span key={application} className="border border-[var(--slate)]/25 px-3 py-2 text-xs">{application}</span>)}</div> : <div className="mt-8 grid max-w-lg gap-0 border-t border-[var(--slate)]/20">{product.specs.map((spec) => <div key={spec.label} className="flex justify-between gap-5 border-b border-[var(--slate)]/20 py-4 text-sm"><span className="mono text-[10px] uppercase text-[var(--slate)]/55">{spec.label}</span><span className="text-right">{spec.value}</span></div>)}</div>}</div></div></div></section><section className="bg-[var(--frost)] px-5 py-20 lg:px-10"><div className="mx-auto max-w-[1440px] border-t border-[var(--slate)]/20 pt-8"><div className="flex flex-col justify-between gap-6 md:flex-row md:items-end"><div><SectionLabel num="Product files">Editable placeholders</SectionLabel><h2 className="display mt-4 text-4xl tracking-[-.05em] text-[var(--ink)]">Downloads & technical information.</h2></div><button className="inline-flex items-center gap-3 border border-[var(--slate)]/30 px-4 py-3 text-[11px] font-bold uppercase tracking-[.12em] text-[var(--ink)] hover:border-[var(--teal)]" onClick={() => alert('Technical document placeholder — replace with final PDF.')} data-testid="button-download-product"><Download size={15} /> Download placeholder</button></div></div></section></main></Shell>;
+function ProductCategoryPage({ slug }: { slug?: string }) {
+  const category = getCatalogCategory(slug);
+  if (!category) return <NotFound />;
+  return (
+    <Shell>
+      <Seo title={category.name} description={category.description} canonicalPath={`/products/${category.slug}`} />
+      <CategoryPageContent category={category} />
+    </Shell>
+  );
+}
+
+function ProductVariantPage({ categorySlug, variantSlug }: { categorySlug?: string; variantSlug?: string }) {
+  const category = getCatalogCategory(categorySlug);
+  const variant = getCatalogVariant(categorySlug, variantSlug);
+  if (!category || !variant) return <NotFound />;
+  return (
+    <Shell>
+      <Seo
+        title={`${variant.name} | ${category.name}`}
+        description={variant.description}
+        canonicalPath={`/products/${category.slug}/${variant.slug}`}
+      />
+      <VariantPageContent category={category} variant={variant} />
+    </Shell>
+  );
 }
 
 function Applications() {
@@ -619,7 +854,44 @@ function About() {
 }
 
 function Quality() {
-  return <Shell><Seo title="Quality" description="Apex Liftex quality philosophy: material selection, production quality, inspection and consistency." /><PageIntro kicker="QUALITY / 04" title={<>Trust is<br /><em>measured.</em></>} text="Quality is not a badge added at the end. It is the discipline of making every decision legible — from material selection to final inspection." /><section className="bg-[var(--slate)] px-5 py-20 text-[var(--frost)] lg:px-10 lg:py-32"><div className="mx-auto max-w-[1440px]"><div className="grid gap-12 lg:grid-cols-[.8fr_1.2fr]"><div><SectionLabel num="Quality philosophy" light>Process</SectionLabel><h2 className="display mt-6 text-5xl tracking-[-.06em] md:text-7xl">No vague<br /><span className="text-[var(--lime)]">assurance.</span></h2></div><div className="grid gap-0 border-t border-[var(--sage)]/25">{['Material selection', 'Production quality', 'Inspection process', 'Product consistency', 'Safety-focused approach'].map((item, i) => <div key={item} className="flex items-center justify-between border-b border-[var(--sage)]/25 py-6"><div className="flex gap-6"><span className="mono text-[10px] text-[var(--teal)]">0{i + 1}</span><span className="display text-2xl">{item}</span></div><ArrowRight size={17} className="text-[var(--lime)]" /></div>)}</div></div><div className="mt-24 border border-[var(--sage)]/25 p-6 md:p-10"><span className="mono text-[10px] uppercase tracking-[.16em] text-[var(--teal)]">Verification note</span><p className="mt-5 max-w-3xl text-xl leading-8 text-[var(--mist)]">Certification, testing values and formal quality-system claims are intentionally not published here until verified information is supplied by the client.</p></div></div></section></Shell>;
+  const items = ['Listed width and grade', 'Intended application', 'Material and finish', 'Load rating', 'Available supporting documents'];
+  return (
+    <Shell>
+      <Seo title="Product information" description="Review the catalogue details supplied for Apex Liftex products and confirm application fit and available documentation directly with the team." />
+      <PageIntro
+        kicker="PRODUCT INFORMATION / 04"
+        title={<>Clarity<br /><em>before commitment.</em></>}
+        text="Only variant details supplied for the catalogue are listed on this site. Contact Apex Liftex to confirm application fit and request available supporting documents."
+      />
+      <section className="bg-[var(--slate)] px-5 py-20 text-[var(--frost)] lg:px-10 lg:py-32">
+        <div className="mx-auto max-w-[1440px]">
+          <div className="grid gap-12 lg:grid-cols-[.8fr_1.2fr]">
+            <div>
+              <SectionLabel num="Product verification" light>Confirm</SectionLabel>
+              <h2 className="display mt-6 text-5xl tracking-[-.06em] md:text-7xl">Know what<br /><span className="text-[var(--lime)]">is listed.</span></h2>
+            </div>
+            <div className="grid gap-0 border-t border-[var(--sage)]/25">
+              {items.map((item, index) => (
+                <div key={item} className="flex items-center justify-between border-b border-[var(--sage)]/25 py-6">
+                  <div className="flex gap-6">
+                    <span className="mono text-[10px] text-[var(--teal)]">0{index + 1}</span>
+                    <span className="display text-2xl">{item}</span>
+                  </div>
+                  <ArrowRight size={17} className="text-[var(--lime)]" />
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="mt-24 border border-[var(--sage)]/25 p-6 md:p-10">
+            <span className="mono text-[10px] uppercase tracking-[.16em] text-[var(--teal)]">Verification note</span>
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-[var(--mist)]">
+              This site does not publish verified test values, certifications, load ratings or formal quality-system claims. Confirm specifications and available documentation directly with Apex Liftex for your specific variant.
+            </p>
+          </div>
+        </div>
+      </section>
+    </Shell>
+  );
 }
 
 function Resources() {
@@ -704,22 +976,81 @@ function GalleryPage() {
   );
 }
 
-function InquiryForm({ quote = false }: { quote?: boolean }) {
-  const [sent, setSent] = useState(false);
-  const submit = (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); setSent(true); };
-  if (sent) return <div className="border border-[var(--teal)]/50 bg-[var(--slate)] p-8 text-[var(--frost)] md:p-12"><Check size={25} className="text-[var(--lime)]" /><h2 className="display mt-6 text-4xl tracking-[-.05em]">Inquiry received.</h2><p className="mt-4 max-w-md text-sm leading-7 text-[var(--sage)]">This frontend flow is ready to connect to your inquiry endpoint. We will be in touch using the details provided.</p><button onClick={() => setSent(false)} className="mt-8 text-[11px] font-bold uppercase tracking-[.13em] text-[var(--lime)]" data-testid="button-send-another">Send another inquiry →</button></div>;
-  const fields = quote ? ['Company name', 'Contact name', 'Email', 'Phone', 'Product', 'Application', 'Quantity'] : ['Name', 'Company', 'Email', 'Phone', 'Product interest', 'Quantity / requirement'];
-  return <form onSubmit={submit} className="grid gap-5 md:grid-cols-2">{fields.map((field) => <label key={field} className="block"><span className="mono mb-2 block text-[9px] uppercase tracking-[.15em] text-[var(--sage)]">{field}</span>{field === 'Product' || field === 'Product interest' || field === 'Application' ? <select required={field === 'Product'} className="w-full border-b border-[var(--sage)]/40 bg-transparent px-0 py-3 text-sm text-[var(--frost)] outline-none focus:border-[var(--lime)]" data-testid={`select-${field.toLowerCase().replaceAll(' ', '-')}`}><option value="" className="bg-[var(--slate)]">Select an option</option>{(field === 'Application' ? ['Logistics', 'Transportation', 'Manufacturing', 'Industrial equipment'] : products.map((p) => p.name)).map((option) => <option key={option} className="bg-[var(--slate)]">{option}</option>)}</select> : <input required={['Name', 'Contact name', 'Email', 'Company', 'Company name'].includes(field)} type={field === 'Email' ? 'email' : 'text'} className="w-full border-b border-[var(--sage)]/40 bg-transparent px-0 py-3 text-sm text-[var(--frost)] outline-none placeholder:text-[var(--sage)]/55 focus:border-[var(--lime)]" placeholder={`Enter ${field.toLowerCase()}`} data-testid={`input-${field.toLowerCase().replaceAll(' ', '-')}`} />}</label>)}<label className="md:col-span-2"><span className="mono mb-2 block text-[9px] uppercase tracking-[.15em] text-[var(--sage)]">{quote ? 'Requirement' : 'Message'}</span><textarea required rows={4} className="w-full resize-none border-b border-[var(--sage)]/40 bg-transparent px-0 py-3 text-sm text-[var(--frost)] outline-none placeholder:text-[var(--sage)]/55 focus:border-[var(--lime)]" placeholder="Tell us what you’re moving, and what you need the system to do." data-testid="textarea-requirement" /></label><label className="md:col-span-2"><span className="mono mb-2 block text-[9px] uppercase tracking-[.15em] text-[var(--sage)]">Upload requirement / file</span><input type="file" className="w-full text-xs text-[var(--sage)] file:mr-4 file:border-0 file:bg-[var(--lime)] file:px-3 file:py-2 file:text-[10px] file:font-bold file:uppercase" data-testid="input-attachment" /></label><button type="submit" className="mt-4 inline-flex w-fit items-center gap-4 bg-[var(--lime)] px-5 py-4 text-[11px] font-bold uppercase tracking-[.13em] text-[var(--ink)] hover:bg-[var(--frost)]" data-testid="button-submit-inquiry">{quote ? 'Request a quote' : 'Submit inquiry'} <ArrowUpRight size={16} /></button></form>;
-}
-
 function Contact({ quote = false }: { quote?: boolean }) {
-  return <Shell><Seo title={quote ? 'Request a quote' : 'Contact'} description={quote ? 'Tell Apex Liftex what you are moving and request a load-securing solution.' : 'Contact Apex Liftex about industrial load-securing products and applications.'} /><PageIntro kicker={quote ? 'QUOTE / 06' : 'CONTACT / 06'} title={quote ? <>Tell us what<br />you’re <em>moving.</em></> : <>Start a<br /><em>conversation.</em></>} text={quote ? "Need the right securing solution? Give us the operating context. We’ll help you define the next step." : 'A practical conversation is usually the fastest route to the right product. Bring us the load, the route or the question.'} /><section className="bg-[var(--ink)] px-5 py-20 lg:px-10 lg:py-32"><div className="mx-auto grid max-w-[1440px] gap-16 lg:grid-cols-[.65fr_1.35fr]"><div className="text-[var(--frost)]"><SectionLabel num="Apex Liftex" light>Inquiry desk</SectionLabel><h2 className="display mt-7 text-4xl leading-[.95] tracking-[-.06em] md:text-6xl">{quote ? 'The load is the brief.' : 'Make the first move.'}</h2><p className="mt-7 max-w-sm text-sm leading-7 text-[var(--sage)]">Company contact details: editable placeholder pending confirmation.</p><div className="mt-12 border-t border-[var(--sage)]/25 pt-5"><span className="mono text-[9px] uppercase tracking-[.15em] text-[var(--teal)]">Response note</span><p className="mt-3 text-sm leading-6 text-[var(--mist)]">Share only what is useful. A product family, a rough requirement, a photo of the load — we can start there.</p></div></div><InquiryForm quote={quote} /></div></section></Shell>;
+  const initialProduct = quote ? new URLSearchParams(window.location.search).get('product') ?? '' : '';
+  return (
+    <Shell>
+      <Seo
+        title={quote ? 'Request a quote' : 'Contact'}
+        description={quote ? 'Tell Apex Liftex what you are moving and request a load-securing solution.' : 'Contact Apex Liftex about industrial load-securing products and applications.'}
+        canonicalPath={quote ? '/quote' : '/contact'}
+      />
+      <PageIntro
+        kicker={quote ? 'QUOTE / 06' : 'CONTACT / 06'}
+        title={quote ? <>Tell us what<br />you’re <em>moving.</em></> : <>Start a<br /><em>conversation.</em></>}
+        text={quote ? "Need the right securing solution? Give us the operating context. We’ll help you define the next step." : 'A practical conversation is usually the fastest route to the right product. Bring us the load, the route or the question.'}
+      />
+      <section className="bg-[var(--ink)] px-5 py-20 lg:px-10 lg:py-32">
+        <div className="mx-auto grid max-w-[1440px] gap-16 lg:grid-cols-[.65fr_1.35fr]">
+          <div className="text-[var(--frost)]">
+            <SectionLabel num="Apex Liftex" light>Inquiry desk</SectionLabel>
+            <h2 className="display mt-7 text-4xl leading-[.95] tracking-[-.06em] md:text-6xl">{quote ? 'The load is the brief.' : 'Make the first move.'}</h2>
+            <p className="mt-7 max-w-sm text-sm leading-7 text-[var(--sage)]">
+              Call <a href="tel:+916353328702" className="text-[var(--frost)] hover:text-[var(--orange-bright)]">+91 63533 28702</a> or email <a href="mailto:info@apexliftex.com" className="text-[var(--frost)] hover:text-[var(--orange-bright)]">info@apexliftex.com</a>.
+            </p>
+            <div className="mt-12 border-t border-[var(--sage)]/25 pt-5">
+              <span className="mono text-[9px] uppercase tracking-[.15em] text-[var(--teal)]">Response note</span>
+              <p className="mt-3 text-sm leading-6 text-[var(--mist)]">Share only what is useful. A product family, a rough requirement, a photo of the load — we can start there.</p>
+            </div>
+          </div>
+          <InquiryForm quote={quote} initialProduct={initialProduct} />
+        </div>
+      </section>
+    </Shell>
+  );
 }
 
 function AppRoutes() {
-  return <Switch><Route path="/" component={Home} /><Route path="/products" component={ProductsPage} /><Route path="/products/:slug">{(params) => <ProductPage slug={params.slug} />}</Route><Route path="/gallery" component={GalleryPage} /><Route path="/applications" component={Applications} /><Route path="/about" component={About} /><Route path="/quality" component={Quality} /><Route path="/resources" component={Resources} /><Route path="/contact">{() => <Contact />}</Route><Route path="/quote">{() => <Contact quote />}</Route><Route component={NotFound} /></Switch>;
+  return (
+    <Switch>
+      <Route path="/" component={Home} />
+      <Route path="/products" component={ProductsPage} />
+      <Route path="/products/:categorySlug/:variantSlug">
+        {(params) => <ProductVariantPage categorySlug={params.categorySlug} variantSlug={params.variantSlug} />}
+      </Route>
+      <Route path="/products/:categorySlug">
+        {(params) => <ProductCategoryPage slug={params.categorySlug} />}
+      </Route>
+      <Route path="/gallery" component={GalleryPage} />
+      <Route path="/applications" component={Applications} />
+      <Route path="/about" component={About} />
+      <Route path="/quality" component={Quality} />
+      <Route path="/resources" component={Resources} />
+      <Route path="/contact">{() => <Contact />}</Route>
+      <Route path="/quote">{() => <Contact quote />}</Route>
+      <Route component={NotFound} />
+    </Switch>
+  );
+}
+
+function RouteScrollManager() {
+  const [location] = useLocation();
+
+  useEffect(() => {
+    const hashIndex = location.indexOf('#');
+    if (hashIndex >= 0) {
+      const hash = decodeURIComponent(location.slice(hashIndex + 1));
+      window.requestAnimationFrame(() => {
+        document.getElementById(hash)?.scrollIntoView({ block: 'start', behavior: 'auto' });
+      });
+      return;
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [location]);
+
+  return null;
 }
 
 export default function App() {
-  return <AppRoutes />;
+  return <><RouteScrollManager /><AppRoutes /></>;
 }

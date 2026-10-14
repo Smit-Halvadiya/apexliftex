@@ -1,0 +1,286 @@
+# BUILD COMPLETE PRODUCT CATALOGUE AND INDIVIDUAL PRODUCT PAGES — APEX LIFTEX
+
+You are working on the existing Apex Liftex website. Build a complete, premium B2B product catalogue with category pages, individual product variant pages, and a sophisticated Products dropdown menu.
+
+**Important: This is an implementation task, not just a design mockup. Every product link must open a working page, and all pages must use the existing website's framework and architecture.**
+
+## 1. FIRST, INSPECT THE EXISTING PROJECT
+
+Before writing code:
+
+- Inspect the current website structure, routing system, components, CSS, assets, and installed libraries.
+- Identify the current navbar and existing Products menu.
+- Check whether any product pages or product data already exist.
+- Reuse the existing design system, brand colors, typography, and animation libraries.
+- Do not rebuild the entire website or modify unrelated homepage sections.
+- Add new routes and components in a structured, maintainable way.
+
+## 2. CREATE FOUR MAIN PRODUCT CATEGORIES
+
+Create these four main categories, each with its own category landing page:
+
+1. Roll Belts
+2. Ratchet Lashing Belts
+3. Ratchet Locks
+4. Hooks
+
+Each category must have a dedicated URL, an introductory section, relevant product imagery, a product listing, and links to its individual product variant pages.
+
+Suggested URL structure:
+
+- `/products/roll-belts`
+- `/products/ratchet-lashing-belts`
+- `/products/ratchet-locks`
+- `/products/hooks`
+
+Use the project's existing routing conventions if they differ.
+
+## 3. ADD ALL PRODUCT VARIANTS AND INDIVIDUAL PAGES
+
+Create separate product detail pages for every variant listed below. Do not combine all variants into one generic product page.
+
+### CATEGORY A — ROLL BELTS
+
+Create these individual product pages:
+
+1. 25 mm Belt / 18G
+2. 35 mm Belt / 32G
+3. 50 mm Belt / 35G
+4. 50 mm Belt / 45G
+5. 50 mm Belt / 55G
+6. 50 mm Belt / 65G
+7. 50 mm Belt / 85G
+8. 50 mm Belt / 100G
+
+Suggested URL examples:
+- `/products/roll-belts/25-mm-belt-18g`
+- `/products/roll-belts/35-mm-belt-32g`
+- `/products/roll-belts/50-mm-belt-35g`
+
+Follow the same pattern for the remaining variants.
+
+### CATEGORY B — RATCHET LASHING BELTS
+
+Create these individual product pages:
+
+1. 25 mm Belt / 18G
+2. 35 mm Belt / 32G
+3. 50 mm Belt / 35G
+4. 50 mm Belt / 45G
+5. 50 mm Belt / 55G
+6. 50 mm Belt / 65G
+7. 50 mm Belt / 85G
+8. 50 mm Belt / 100G / 5 TON
+9. 75 mm Belt / 8 TON
+10. 75 mm Belt / 10 TON
+
+Suggested URL examples:
+- `/products/ratchet-lashing-belts/25-mm-belt-18g`
+- `/products/ratchet-lashing-belts/50-mm-belt-100g-5-ton`
+- `/products/ratchet-lashing-belts/75-mm-belt-8-ton`
+
+Use the listed specifications accurately. Do not infer unprovided specifications.
+
+### CATEGORY C — RATCHET LOCKS
+
+Create these individual product pages:
+
+1. 25 mm Ratchet Lock
+2. 35 mm Ratchet Lock
+3. 50 mm Ratchet Lock (Alloy)
+4. 50 mm Ratchet Lock (Plastic)
+5. 75 mm Ratchet Lock
+
+Suggested URLs:
+- `/products/ratchet-locks/25-mm-ratchet-lock`
+- `/products/ratchet-locks/35-mm-ratchet-lock`
+- `/products/ratchet-locks/50-mm-ratchet-lock-alloy`
+- `/products/ratchet-locks/50-mm-ratchet-lock-plastic`
+- `/products/ratchet-locks/75-mm-ratchet-lock`
+
+### CATEGORY D — HOOKS
+
+Create these individual product pages:
+
+1. 25 mm J Hook
+2. 35 mm J Hook
+3. 50 mm J Hook
+4. 75 mm J Hook
+
+Suggested URLs:
+- `/products/hooks/25-mm-j-hook`
+- `/products/hooks/35-mm-j-hook`
+- `/products/hooks/50-mm-j-hook`
+- `/products/hooks/75-mm-j-hook`
+
+**TOTAL: 27 individual product variant pages across 4 product categories.**
+
+Treat each listed variant as a distinct product entry. Build a reusable page template driven by structured product data, but ensure every product has its own URL, correct title, relevant images, category, and variant-specific information.
+
+## 4. BUILD A PREMIUM PRODUCTS HOVER MENU
+
+Update the existing desktop navbar's Products item.
+
+When a visitor hovers over Products or clicks its arrow:
+
+- Open a premium mega-menu with a smooth, subtle animation.
+- Display four clearly separated columns, one for each product category.
+- Show every variant listed under its correct category.
+- Make every category title clickable.
+- Make every variant name clickable and link it to the correct individual product page.
+- Highlight the currently hovered link with a subtle brand-color treatment.
+- Keep the menu open while the cursor moves from Products into the dropdown.
+- Close it naturally when the pointer leaves the complete menu area.
+- Support keyboard navigation and click/tap interaction for accessibility.
+- On mobile, use a collapsible Products accordion with four expandable categories and working links.
+
+Keep the menu elegant and readable. Do not make it excessively tall or crowded. Use a responsive mega-menu with appropriate scrolling or grouping on smaller screens.
+
+The reference screenshot shows four product columns; use that information hierarchy as inspiration, but create an original Apex Liftex design consistent with the existing website.
+
+## 5. CATEGORY LANDING PAGE DESIGN
+
+Create a premium category page for each of the four categories.
+
+Each page should include:
+
+1. A category-specific hero with a clear headline, short introduction, relevant product image, and breadcrumb navigation.
+2. A product listing featuring all variants in that category.
+3. Product cards with a clear product image, exact product name, available variant specification, and a “View Details” link.
+4. A business enquiry CTA such as “Request a Quote.”
+5. Links to related products or other categories.
+6. A clean footer consistent with the existing website.
+
+Use different relevant images for different products wherever suitable assets are available. Do not use the same unrelated image for every product.
+
+If authentic product photographs already exist in the project, use them first. If an image is missing, use a suitable temporary visual and make the image path easy to replace later. Never represent a ratchet lock, hook, or roll belt with an incorrect product image.
+
+## 6. INDIVIDUAL PRODUCT DETAIL PAGE DESIGN
+
+Every one of the 27 product URLs must open a complete, polished product detail page.
+
+Use this structure:
+
+### A. Breadcrumbs
+Home → Products → Category → Current Product
+
+All breadcrumb links must work.
+
+### B. Product Hero
+- Large, clear product photograph.
+- Exact product title.
+- Category label.
+- Short, original description specific to the listed product variant.
+- A prominent “Request a Quote” button.
+- A secondary enquiry/contact option.
+
+### C. Product Image Gallery
+- Display available product images in a premium gallery layout.
+- Allow users to select image thumbnails when multiple images exist.
+- Use appropriate image proportions and object-fit settings.
+- Ensure the product is clearly visible and not cropped incorrectly.
+
+### D. Product Overview
+Write concise, original copy explaining the product type and its intended load-securing application. Keep claims factual and relevant to the actual product.
+
+### E. Specifications
+Display only confirmed specifications from the supplied product data, such as belt width, listed grade, material type, or listed tonnage where applicable.
+
+Do not invent load capacities, breaking strength, working load limits, dimensions, material grades, certifications, test results, or prices.
+
+For any missing information, omit the field or clearly label it “Contact us for specifications.”
+
+### F. Enquiry Section
+Include a professional B2B enquiry form with fields for:
+- Name
+- Company name
+- Email or phone
+- Product of interest
+- Quantity required
+- Message
+
+Preselect the relevant product when the enquiry is initiated from that product page.
+
+Validate the form and show clear success or error feedback. Connect it to an existing backend or enquiry service if one is configured. If no submission service exists, implement the frontend safely and clearly identify that backend integration is still required. Do not display a fake successful submission.
+
+### G. Related Products
+Show a small selection of relevant products from the same category, with working links to their individual pages.
+
+## 7. PRODUCT DATA ARCHITECTURE
+
+Store the catalogue in one centralized, structured data source instead of duplicating product content across 27 separate components.
+
+Each product entry should support fields such as:
+
+- `slug`
+- `name`
+- `category`
+- `categorySlug`
+- `description`
+- `specifications`
+- `images`
+- `relatedProducts`
+
+Populate only information supported by the supplied catalogue. Keep the structure extensible so prices, availability, and additional specifications can be added later.
+
+All navigation menus, category listings, breadcrumbs, and product detail pages should use this shared data source.
+
+If a visitor opens an invalid product URL, show a proper not-found page or redirect to the relevant category. Never render a blank page.
+
+## 8. VISUAL DESIGN DIRECTION
+
+The website must feel premium, contemporary, industrial, and suitable for international B2B customers.
+
+Use:
+- Strong product photography.
+- Excellent typography and spacing.
+- A clean, consistent grid.
+- Subtle borders and restrained shadows.
+- Smooth hover effects and page transitions.
+- A clear hierarchy between product title, specifications, and CTA.
+- Responsive layouts for desktop, tablet, and mobile.
+
+Avoid generic AI-looking layouts, excessive gradients, oversized rounded cards, cluttered sections, and unnecessary animations.
+
+Keep product information easy to scan. Product imagery and the exact product variant should be the main focus.
+
+## 9. SEO AND PERFORMANCE
+
+For every category and product page:
+
+- Use a unique, descriptive page title and meta description.
+- Add one clear H1 heading.
+- Use clean, canonical URLs.
+- Add meaningful image alt text.
+- Implement internal links between categories, products, and related products.
+- Use appropriate product structured data only for information that is actually available.
+- Do not add invented prices, ratings, stock status, or reviews.
+- Optimize images, lazy-load below-the-fold media, and avoid unnecessary dependencies.
+- Ensure all routes work after refresh and direct navigation, including deployment.
+
+## 10. STRICT BUSINESS ACCURACY
+
+Apex Liftex supplies and sells load-securing products. Do not claim that Apex Liftex manufactures these products or performs in-house testing.
+
+Do not invent prices, certifications, factory capabilities, customer logos, testimonials, delivery promises, or performance guarantees.
+
+Use “Request a Quote” instead of inventing product prices.
+
+Keep all product names and listed variants exactly as specified above.
+
+## 11. FINAL VERIFICATION
+
+Before finishing, verify all of the following:
+
+- All four category pages exist and load.
+- All 27 individual product URLs work.
+- Every product variant appears under the correct category in the desktop mega-menu.
+- The Products hover menu works without flickering or closing while entering the dropdown.
+- Every menu item, product card, breadcrumb, and related-product link goes to the correct page.
+- Mobile navigation works using tap and expandable accordions.
+- No broken images, duplicate routes, blank pages, or console errors remain.
+- Existing homepage sections and unrelated website functionality remain unchanged.
+
+At the end, provide a concise implementation summary listing the routes created, files changed, and any remaining backend or product-image tasks.
+
+**Priority: Complete catalogue coverage, correct routing, accurate product information, and a premium user experience. Do not stop after creating only the menu or a few sample pages.**

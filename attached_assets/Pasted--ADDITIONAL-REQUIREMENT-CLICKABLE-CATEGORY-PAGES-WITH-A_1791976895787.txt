@@ -1,0 +1,98 @@
+## ADDITIONAL REQUIREMENT — CLICKABLE CATEGORY PAGES WITH ALL PRODUCTS
+
+This requirement is mandatory. Implement it in addition to all the previously specified product pages.
+
+### 1. All Four Product Categories Must Be Clickable
+
+In the navbar Products mega-menu, make each category heading clickable, not just the individual product names.
+
+The following category headings must each open their own dedicated category page:
+
+- Roll Belts
+- Ratchet Lashing Belts
+- Ratchet Locks
+- Hooks
+
+For example, clicking **Ratchet Lashing Belts** must open `/products/ratchet-lashing-belts`, where visitors can see information about ratchet lashing belts and browse all available variants together.
+
+### 2. Category Page Layout
+
+Each category page must follow this structure:
+
+**Section 1 — Breadcrumb Navigation**
+
+Example: Home → Products → Ratchet Lashing Belts
+
+**Section 2 — Category Introduction**
+
+At the top of the page, display:
+- Category name as the main heading.
+- A short, original description explaining the product category and its general application.
+- A relevant, high-quality product image.
+- A clear “Request a Quote” CTA.
+
+Keep this introduction concise and premium. Do not fill the page with lengthy generic content.
+
+**Section 3 — All Products in This Category**
+
+Immediately below the introduction, display every product variant belonging to that category in a responsive product grid.
+
+For example, the Ratchet Lashing Belts page must display all 10 variants together:
+
+- 25 mm Belt / 18G
+- 35 mm Belt / 32G
+- 50 mm Belt / 35G
+- 50 mm Belt / 45G
+- 50 mm Belt / 55G
+- 50 mm Belt / 65G
+- 50 mm Belt / 85G
+- 50 mm Belt / 100G / 5 TON
+- 75 mm Belt / 8 TON
+- 75 mm Belt / 10 TON
+
+Each product should appear in its own clickable product card containing:
+- A relevant product image.
+- The exact product name and specifications.
+- A short, concise description.
+- A “View Details” link or button.
+- An optional “Request a Quote” action.
+
+Clicking anywhere appropriate on the product card should open that exact variant's individual detail page.
+
+### 3. Apply the Same Behaviour to All Four Categories
+
+- **Roll Belts:** Show all 8 listed variants together.
+- **Ratchet Lashing Belts:** Show all 10 listed variants together.
+- **Ratchet Locks:** Show all 5 listed variants together.
+- **Hooks:** Show all 4 listed variants together.
+
+Do not mix products from different categories on these category pages.
+
+### 4. Individual Product Pages Must Still Exist
+
+The category page and individual product page serve different purposes.
+
+For example:
+
+`/products/ratchet-lashing-belts`
+
+This page introduces the category and displays all 10 ratchet lashing belt variants.
+
+`/products/ratchet-lashing-belts/25-mm-belt-18g`
+
+This page displays the detailed information, images, confirmed specifications, and enquiry option for the specific 25 mm Belt / 18G product.
+
+Implement the same parent-category and individual-product relationship for all four categories.
+
+### 5. Ensure Navigation Works Everywhere
+
+- Clicking a category heading in the Products mega-menu opens the relevant category landing page.
+- Clicking a product variant in the mega-menu opens that specific product detail page.
+- Clicking a product card on a category page opens that specific product detail page.
+- Breadcrumbs allow visitors to return to the parent category.
+- Category pages include a clear way to explore other product categories.
+- Direct URLs must work after refresh and when opened in a new browser tab.
+
+Use one centralized product data source to populate the mega-menu, category grids, and product detail pages. This ensures product names and routes remain consistent throughout the website.
+
+**Final acceptance criterion:** All four category headings must be fully clickable and open their own category landing pages. Each landing page must show its category introduction first and all products in that category below it. Every listed product must then open its own individual detail page. Do not implement category headings as non-clickable labels or dropdown-only sections.

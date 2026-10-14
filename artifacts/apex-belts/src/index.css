@@ -74,7 +74,7 @@
   --orange-bright: #ff9c32;
   --orange-deep: #c7611f;
   --lime: var(--orange);
-  --teal: #39d6c5;
+  --teal: var(--orange-deep);
   --sage: #87958f;
   --model-charcoal: #293238;
   --model-steel: #aeb9b9;
